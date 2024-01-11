@@ -73,7 +73,7 @@ function fetchMoreMovies() {
         .then(response => response.json())
         .then(data => {
             data.results.forEach((movie, index) => {
-                const movieCard = createMovieCard(index, movie.title, movie.original_title, movie.poster_path, movie.vote_average, movie.overview, movie.id);
+                const movieCard = createMovieCard(index, movie.poster_path, movie.id);
                 lcContainer.appendChild(movieCard);
             });
 
@@ -85,22 +85,14 @@ function fetchMoreMovies() {
 
 document.addEventListener('DOMContentLoaded', fetchMoreMovies);
 
-function createMovieCard(index, title, otitle, poster_path, vote_average, overview, id) {
+function createMovieCard(index, poster_path, id) {
 
     const movieContainer = (() => { const el = document.createElement('div'); el.className = 'lc'; return el; })();
     const imageElement = (() => { const el = document.createElement('img'); el.className = 'poster'; el.src = 'https://image.tmdb.org/t/p/original' + poster_path; return el; })();
-    const plusContainer = (() => { const el = document.createElement('div'); el.className = 'plus'; return el; })();
-    const titleElement = (() => { const el = document.createElement('div'); el.className = 'p_title'; el.textContent = title; return el; })();
-    const otitleElement = (() => { const el = document.createElement('div'); el.className = 'p-otitle'; el.textContent = `(${otitle})`; return el; })();
-    const starElement = (() => { const el = document.createElement('div'); el.className = 'p_star'; el.textContent = `⭐️ 평점: ${Math.round(vote_average * 10) / 10}`; return el; })();
-    const hrElement = document.createElement('hr');
-    const overviewElement = (() => { const el = document.createElement('div'); el.className = 'p_over'; el.textContent = overview; return el; })();
-
-    const elements = [titleElement, otitleElement, starElement, hrElement, overviewElement];
-    elements.forEach(element => plusContainer.appendChild(element));
+    const rankElement = (() => {const el = document.createElement('h1'); el.className = 'rank'; el.textContent = index+1; return el;})();
 
     movieContainer.appendChild(imageElement);
-    movieContainer.appendChild(plusContainer);
+    movieContainer.appendChild(rankElement);
 
     function handlePosterClick() {
         alert(`해당 영화의 ID : ${id}`);
@@ -200,7 +192,7 @@ function handleSearch() {
 
 function renderMovies(movies) {
     movies.forEach((movie, index) => {
-        const movieCard = createMovieCard(index + 1, movie.title, movie.original_title, movie.poster_path, movie.vote_average, movie.overview, movie.id);
+        const movieCard = createMovieCard(index + 1, movie.poster_path, movie.id);
         lcContainer.appendChild(movieCard);
     });
 
