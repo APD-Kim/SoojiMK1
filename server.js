@@ -32,3 +32,7 @@ app.get("/search", (req, res) => {
   const imagePath = "/js.png";
   res.render("search.ejs", { imagePath: imagePath });
 });
+
+app.get("/ranking", (req, res) => {
+  res.render("ranking.ejs");
+});
