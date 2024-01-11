@@ -381,42 +381,36 @@ a {
 
 .lc {
     display: flex;
-    width: 330px;
-    flex-direction: column;
+    width: 230px;
+    height: 430px;
+    float: left;
 
     color: black;
-    padding: 10px;
+    margin-left: 50px;
+    margin-right: 80px;
 
-    border: 1px solid black;
-    background-color: white;
+    position: relative;
 }
 
 
 .live {
-    width: 94%;
-
-    display: grid;
-    grid-template-columns: repeat(4, 350px);
-    grid-auto-rows: auto;
-
-    grid-column-gap: 80px;
-    grid-row-gap: 200px;
-
-    padding: 50px;
-
-    border: 3px solid black;
-
-    overflow: auto;
+    width: 700%;
 }
 
-.content {
-    background-color: red;
-    width: 101%;
-    height: 50px;
-    border: 1px solid black;
+.cardContainer {
+    overflow: auto;
+    height: 500px;
+}
 
+.rank {
+    z-index: 1;
     position: absolute;
-    top: 418px;
+    font-size: 90px;
+    top: 270px;
+    left: -5px;
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+
 }
 
 .poster img {
@@ -427,25 +421,6 @@ a {
     border: 1px solid black;
 }
 
-.p_title {
-    font-size: 30px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.p-otitle {
-    font-size: 18px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.p_star {
-    font-size: 20px;
-    text-align-last: right;
-    font-weight: bold;
-}
-
 .searchadd {
     font-size: 18px;
     text-align: center;
@@ -454,7 +429,7 @@ a {
     background-color: transparent;
     
     padding: 15px 25px 15px 25px;
-    margin: 50px 0 50px 45%;
+    margin: 0 0 0 85%;
 
     display: block;
 }
