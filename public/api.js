@@ -76,21 +76,38 @@ function fetchMoreMovies() {
   const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${
     currentPage + 1
   }`;
-
   fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
       data.results.forEach((movie, index) => {
         const movieCard = createMovieCard(
           index,
-          movie.title,
-          movie.original_title,
           movie.poster_path,
-          movie.vote_average,
+          movie.id,
+          movie.title,
           movie.overview,
-          movie.id
+          movie.vote_average
         );
         lcContainer.appendChild(movieCard);
+
+        fetch(
+          `https://api.themoviedb.org/3/movie/${movie.id}/credits?language=ko-KR`,
+          options
+        )
+          .then((creditsResponse) => creditsResponse.json())
+          .then((creditsData) => {
+            const credits = console.log(
+              `영화 ID ${movie.id}의 크레딧:`,
+              creditsData
+            );
+            // 여기에서 크레딧 데이터를 사용한 추가적인 로직 구현
+          })
+          .catch((err) =>
+            console.error(
+              `영화 ID ${movie.id}의 크레딧 정보를 가져오는 데 실패했습니다:`,
+              err
+            )
+          );
       });
 
       currentPage += 1;
@@ -104,15 +121,7 @@ function fetchMoreMovies() {
 
 document.addEventListener("DOMContentLoaded", fetchMoreMovies);
 
-function createMovieCard(
-  index,
-  title,
-  otitle,
-  poster_path,
-  vote_average,
-  overview,
-  id
-) {
+function createMovieCard(index, poster_path, id, title, overview, vote) {
   const movieContainer = (() => {
     const el = document.createElement("div");
     el.className = "lc";
@@ -124,87 +133,30 @@ function createMovieCard(
     el.src = "https://image.tmdb.org/t/p/original" + poster_path;
     return el;
   })();
-  const plusContainer = (() => {
-    const el = document.createElement("div");
-    el.className = "plus";
+  const rankElement = (() => {
+    const el = document.createElement("h1");
+    el.className = "rank";
+    el.textContent = index + 1;
     return el;
   })();
-  const titleElement = (() => {
-    const el = document.createElement("div");
-    el.className = "p_title";
-    el.textContent = title;
-    return el;
-  })();
-  const otitleElement = (() => {
-    const el = document.createElement("div");
-    el.className = "p-otitle";
-    el.textContent = `(${otitle})`;
-    return el;
-  })();
-  const starElement = (() => {
-    const el = document.createElement("div");
-    el.className = "p_star";
-    el.textContent = `⭐️ 평점: ${Math.round(vote_average * 10) / 10}`;
-    return el;
-  })();
-  const hrElement = document.createElement("hr");
-  const overviewElement = (() => {
-    const el = document.createElement("div");
-    el.className = "p_over";
-    el.textContent = overview;
-    return el;
-  })();
-
-  const elements = [
-    titleElement,
-    otitleElement,
-    starElement,
-    hrElement,
-    overviewElement,
-  ];
-  elements.forEach((element) => plusContainer.appendChild(element));
 
   movieContainer.appendChild(imageElement);
-  movieContainer.appendChild(plusContainer);
+  movieContainer.appendChild(rankElement);
 
   function handlePosterClick() {
     const modal = document.getElementById("myModal");
-    alert(`해당 영화의 ID : ${title}`);
     modal.style.display = "block";
-    document.querySelector(
-      ".modal-content"
-    ).innerHTML = `<p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <p>여기에 모달 내용이 들어갑니다.</p>
-    <!-- 추가적인 내용 -->;
+    document.querySelector(".modal-image").innerHTML = `
+    <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
+    <button class="trailer"> 예고편 보기 </button>
     <span class="close">&times;</span>`;
+    document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
+    <p>⭐️ 평점 : ${vote}
+    <h3>줄거리</h3>
+    <p>${overview}</p>
+    <p>🤍</p>`;
   }
-
   imageElement.addEventListener("click", handlePosterClick);
-
   return movieContainer;
 }
 
@@ -305,18 +257,9 @@ function handleSearch() {
 
 function renderMovies(movies) {
   movies.forEach((movie, index) => {
-    const movieCard = createMovieCard(
-      index + 1,
-      movie.title,
-      movie.original_title,
-      movie.poster_path,
-      movie.vote_average,
-      movie.overview,
-      movie.id
-    );
+    const movieCard = createMovieCard(index + 1, movie.poster_path, movie.id);
     lcContainer.appendChild(movieCard);
   });
-
   currentPage += 1;
 }
 

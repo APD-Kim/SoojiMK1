@@ -8,13 +8,58 @@
     <link rel="stylesheet" href="detail.css" />
     <title>The MOVIE</title>
   </head>
-
   <body>
     <div id="myModal" class="modal">
       <!-- 모달 컨텐츠 -->
-      <div class="modal-content"></div>
+      <div class="modal-box">
+        <div class="modal-image"></div>
+        <div class="modal-content"></div>
+        </div>
+        <div class="modal-box2"><div class="middle">
+          <div class="choose-rating">
+            <p>별점을 선택해주세요</p>
+            <div class="rating">
+              <span class="rating__result"></span> 
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+          </div>
+            <p></p>
+            <form class="input-box" action="">
+              <p>닉네임</p>
+              <input type="text" id="name"></input>
+              <p>비밀번호</p>
+              <input type="password" id="password"></input>
+              <p>리뷰 내용</p>
+              <textarea type="text" id="review-text"></textarea>
+              <button>등록</button>
+            </form>
+          </div>
+      </div>
+      </div>
+      <div class="modal-box3">
+        <!-- 기능개발 후 지울 것 -->
+        <div class="review-box">
+          <p>김동원</p>
+          <p>평점 : 4</p>
+          <p>개꿀잼 ㅇㅈ?</p>
+        </div>
+        <div class="review-box">
+          <p>김재연</p>
+          <p>평점 : 5</p>
+          <p>어 ㅇㅈ</p>
+        </div>
+        <div class="review-box">
+          <p>이경복</p>
+          <p>평점 : 1</p>
+          <p>난 재미없던데 ㅅㄱ</p>
+        </div>
+        <!-- 기능개발 후 지울 것 -->
+      </div>
+      
     </div>
-
     <div class="header">
       <div class="logo">
         <a href=""><strong>The MOVIE</strong> </a>
@@ -193,9 +238,10 @@
       <strong>TOP 20</strong>
     </h1>
 
-    <div id="live" class="live"></div>
-
-    <button id="movieadd" class="searchadd">영화 더 보기</button>eeee
+    <div class="cardContainer">
+      <div id="live" class="live"></div>
+    </div>
+    <button id="movieadd" class="searchadd">영화 더 보기</button>
     <script defer src="main.js" type="module"></script>
     <script defer src="api.js" type="module"></script>
     <script
