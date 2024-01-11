@@ -64,6 +64,31 @@ leftbtn.addEventListener('click', function () {
 
 
 
+
+// -----nextbutton 클릭 시 페이지 이동-----
+
+let nextPosition = 0;
+
+function nextSlide(direction) {
+    if (direction === 'right') {
+        nextPosition -= 80;
+    } else if (direction === 'left') {
+        nextPosition += 80;
+    }
+
+    document.querySelector('.live').style.transform = `translate(${nextPosition % 320}vw)`;
+}
+
+NRB.addEventListener('click', function () {
+    nextSlide('right');
+});
+
+NLB.addEventListener('click', function () {
+    nextSlide('left');
+});
+
+
+
 // -----카테고리메뉴 보여주기-----
 
 const cateButton = document.getElementById('cate');
