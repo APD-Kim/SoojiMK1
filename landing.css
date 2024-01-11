@@ -1,0 +1,68 @@
+* {
+  color: white;
+  background-color: black;
+  padding: 0;
+  margin: 0;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  /* font-size: 16px; */
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 23rem;
+  height: auto;
+  padding: 30px;
+}
+main {
+  background: linear-gradient(
+    124.47deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0)
+  ); /* 배경색이 투명하게 보이게 한다 */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0px);
+}
+.loginpage {
+  text-align: center;
+  padding: 30px;
+  margin: 30px;
+}
+.login {
+  justify-content: space-between;
+  color: gray;
+  background-color: black;
+  font-size: 24px;
+  padding: 30px;
+  width: 370px;
+  outline: 1px black;
+}
+.id {
+  font-family: arial;
+  font-size: 24px;
+  margin: 10px;
+  height: 30px;
+  text-align: center;
+  outline: 1px black;
+}
+.pw {
+  font-family: arial;
+  font-size: 24px;
+  margin: 10px;
+  height: 30px;
+  text-align: center;
+  outline: 1px black;
+}
+.loginbtn {
+  height: 50px;
+  width: 300px;
+}
