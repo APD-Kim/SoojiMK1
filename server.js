@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/detail"));
 app.set("view engine", "ejs");
 
 const { MongoClient, Timestamp } = require("mongodb");
@@ -22,4 +23,11 @@ new MongoClient(url)
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/main.html");
+});
+
+app.get("/detail", (req, res) => {
+  res.render("./fol/detail");
+});
+app.get("/fawfafawfafafafawfaw", (req, res) => {
+  res.render("./fol/detail");
 });
