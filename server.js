@@ -6,8 +6,11 @@ const fs = require("fs");
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/detail"));
 app.use(express.static(__dirname + "/img"));
+
 app.use(express.static(__dirname + "/landing"));
 // app.set("views", path.join(__dirname + "/views"));
+app.use(express.static(__dirname + "/feature_ranking"));
+
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -31,25 +34,10 @@ new MongoClient(url)
     console.log(err);
   });
 
-// app.get("/", async (req, res) => {
-//   let result = await reviewDb.find().toArray();
-//   console.log(result);
-//   res.render("main.ejs", { review: result });
-// });
 app.get("/", async (req, res) => {
   let result = await reviewDb.find().toArray();
   res.render("layout", { title: "EJS 템플릿 엔진 적용하기", review: result });
 });
-
-// // app.get("/", async (req, res) => {
-// //   let result = await reviewDb.find().toArray();
-// //   res.render("body.ejs", { title: "EJS 템플릿 엔진 적용하기", review: result });
-// // });
-
-// app.get("/", async (req, res) => {
-//   let result = await reviewDb.find().toArray();
-//   res.render("main.ejs", { review: result });
-// });
 
 app.post("/review", async (req, res) => {
   let body = req.body;
@@ -69,8 +57,7 @@ app.post("/review", async (req, res) => {
 });
 
 app.get("/search", (req, res) => {
-  const imagePath = "/js.png";
-  res.render("search.ejs", { imagePath: imagePath });
+  res.render("search.ejs");
 });
 
 app.get("/signup", (req, res) => {
