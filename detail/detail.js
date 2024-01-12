@@ -1,12 +1,16 @@
+import options from "./api.js";
+import { fetchMoreMovies } from "./api.js";
+
 // 모달 요소 가져오기
 const modal = document.getElementById("myModal");
 const editReviewButtons = document.querySelectorAll(".edit-review");
 const deleteReviewButtons = document.querySelectorAll(".delete-review");
-const closeButton = document.querySelector(".modal .close");
+const closeButton = document.querySelector(".modal .close-button");
 const editClose = document.querySelector("#edit-modal");
 const reviewBox = document.querySelectorAll(".review-box");
 const ratingStars = [...document.getElementsByClassName("rating__star")];
 const ratingResult = document.querySelector(".rating__result");
+console.log(`hi`);
 
 // console.log(poster);
 
@@ -17,13 +21,14 @@ const ratingResult = document.querySelector(".rating__result");
 
 // 닫기 버튼을 클릭하면 모달 닫기
 document.body.addEventListener("click", function (e) {
+  console.log(e.target);
   if (e.target.id === "detail-close") {
     modal.style.display = "none";
   }
 });
 
 document.body.addEventListener("click", function (e) {
-  if (e.target.id === "close-btn") {
+  if (e.target.id === "close-btn1") {
     editClose.style.display = "none";
   }
 });
@@ -36,8 +41,6 @@ window.addEventListener("click", function (event) {
 });
 
 //live -> lc -> poster
-import options from "./api.js";
-import { fetchMoreMovies } from "./api.js";
 
 console.log(options);
 console.log(fetchMoreMovies);
@@ -73,7 +76,7 @@ document
 //   .querySelector(".rating")
 //   .addEventListener("mousemove", changeStarBlack);
 
-printRatingResult(ratingResult);
+// printRatingResult(ratingResult);
 let starCount = 0;
 
 function executeRating(stars, result) {
@@ -89,19 +92,19 @@ function executeRating(stars, result) {
       starCount = i;
 
       if (star.className.indexOf(starClassUnactive) !== -1) {
-        printRatingResult(result, i + 1);
+        // printRatingResult(result, i + 1);
         for (i; i >= 0; --i) stars[i].className = starClassActive;
       } else {
-        printRatingResult(result, i);
+        // printRatingResult(result, i);
         for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
       }
     };
   });
 }
 
-function printRatingResult(result, num = 0) {
-  result.textContent = `${num}/5`;
-}
+// function printRatingResult(result, num = 0) {
+//   result.textContent = `${num}/5`;
+// }
 
 executeRating(ratingStars, ratingResult);
 
@@ -110,7 +113,7 @@ const password = document.querySelector("#password");
 const text = document.querySelector("#review-text");
 const accessBtn = document.querySelector(".input-box");
 //상세페이지에서 등록버튼 클릭 시 출력
-accessBtn.addEventListener("submit", (e) => {
+accessBtn.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (starCount + 1 <= 1) {
     alert("평점 매기세여");
@@ -217,7 +220,6 @@ editReviewButtons.forEach((button, index) => {
     } else {
       alert("비밀번호가 틀렸습니다.");
     }
-
     // 비밀번호가 맞으면 추가 로직 수행...
   });
 });
