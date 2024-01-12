@@ -62,7 +62,7 @@ for (let i = 1; i <= divCount; i++) {
 
 // -----live에 카드 생성-----
 
-const lcContainer = document.getElementById('live');
+const lcContainer = document.getElementById('live1');
 let currentPage = 0;
 let functionSelection = 0;
 
@@ -105,113 +105,42 @@ function createMovieCard(index, poster_path, id) {
 
 
 
-// -------------한국 영화-------------------------------------------
+///////////////////////////영화 생성///////////////////////////////////////
 
-const koreanContainer = document.getElementById('live2');
+function mainMovie(liveId, url) {
+    const fullUrl = `${url}`;
 
-function koreanMovie() {
-    const url = 'https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko';
-
-    fetch(url, options)
+    fetch(fullUrl, options)
         .then(response => response.json())
         .then(data => {
-            data.results.forEach((movie, index) => {
-                const movieCard = createMovieCard(index, movie.poster_path, movie.id);
-                koreanContainer.appendChild(movieCard);
-            });
+            for (let index = 0; index < 10; index++) {
+                const movie = data.results[index];
+                if (movie) {
+                    const movieCard = createMovieCard(index, movie.poster_path, movie.id);
+                    document.getElementById(liveId).appendChild(movieCard);
+                } else {
+                    console.error(`No data for index ${index} in ${fullUrl}`);
+                }
+            }
         })
-        .catch(err => { console.error(err);});
+        .catch(err => {
+            console.error(err);
+        });
 }
 
-document.addEventListener('DOMContentLoaded', koreanMovie);
+document.addEventListener('DOMContentLoaded', function () {
+    const url2 = 'https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko';
+    const url3 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=28';
+    const url4 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=10749';
+    const url5 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=14';
+    const url6 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=16';
 
-
-
-// -------------액션 영화-------------------------------------------
-
-const actionContainer = document.getElementById('live3');
-
-function actionMovie() {
-    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=28';
-
-    fetch(url, options)
-        .then(response => response.json())
-        .then(data => {
-            data.results.forEach((movie, index) => {
-                const movieCard = createMovieCard(index, movie.poster_path, movie.id);
-                actionContainer.appendChild(movieCard);
-            });
-        })
-        .catch(err => { console.error(err);});
-}
-
-document.addEventListener('DOMContentLoaded', actionMovie);
-
-
-
-// -------------로맨스 영화-------------------------------------------
-
-const romanceContainer = document.getElementById('live4');
-
-function romanceMovie() {
-    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=10749';
-
-    fetch(url, options)
-        .then(response => response.json())
-        .then(data => {
-            data.results.forEach((movie, index) => {
-                const movieCard = createMovieCard(index, movie.poster_path, movie.id);
-                romanceContainer.appendChild(movieCard);
-            });
-        })
-        .catch(err => { console.error(err);});
-}
-
-document.addEventListener('DOMContentLoaded', romanceMovie);
-
-
-
-// -------------애니메이션 영화-------------------------------------------
-
-const animationContainer = document.getElementById('live6');
-
-function animationMovie() {
-    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=16';
-
-    fetch(url, options)
-        .then(response => response.json())
-        .then(data => {
-            data.results.forEach((movie, index) => {
-                const movieCard = createMovieCard(index, movie.poster_path, movie.id);
-                animationContainer.appendChild(movieCard);
-            });
-        })
-        .catch(err => { console.error(err);});
-}
-
-document.addEventListener('DOMContentLoaded', animationMovie);
-
-
-
-// -------------판타지 영화-------------------------------------------
-
-const fantasyContainer = document.getElementById('live5');
-
-function fantasynMovie() {
-    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=14';
-
-    fetch(url, options)
-        .then(response => response.json())
-        .then(data => {
-            data.results.forEach((movie, index) => {
-                const movieCard = createMovieCard(index, movie.poster_path, movie.id);
-                fantasyContainer.appendChild(movieCard);
-            });
-        })
-        .catch(err => { console.error(err);});
-}
-
-document.addEventListener('DOMContentLoaded', fantasynMovie);
+    mainMovie('live2', url2);
+    mainMovie('live3', url3);
+    mainMovie('live4', url4);
+    mainMovie('live5', url5);
+    mainMovie('live6', url6);
+});
 
 
 
