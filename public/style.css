@@ -187,7 +187,6 @@ a {
 }
 
 #poster_path img {
-  width: auto;
   height: 100%;
   display: block;
 
@@ -300,6 +299,7 @@ a {
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 50px;
+  color: white;
 
   position: absolute;
   right: 10%;
@@ -307,24 +307,15 @@ a {
 }
 
 .seemore {
-  width: 50%;
+  width: 500px;
   height: 900px;
   float: right;
   text-align: center;
   font-size: 20px;
-  color: black;
+  color: white;
 
-  position: absolute;
-  top: 150px;
-  right: 40px;
-}
-
-.overview {
-  width: 500px;
-  height: auto;
-
-  position: absolute;
-  right: 20%;
+  margin-right: 15%;
+  margin-top: 5%;
 }
 
 .poster_path {
@@ -354,9 +345,7 @@ a {
 /* -----버튼들----- */
 
 .mainbutton {
-  position: absolute;
-  left: 40%;
-  bottom: 5%;
+  margin-left: 40%;
   z-index: 5;
 }
 
@@ -364,6 +353,7 @@ a {
   margin-left: 30px;
   background-color: transparent;
   border: transparent;
+  color: white;
 }
 
 .slidebutton button {
@@ -374,6 +364,7 @@ a {
   font-size: 30px;
   width: 100px;
   height: 100px;
+  color: white;
 }
 
 .slidebutton {
