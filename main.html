@@ -1,195 +1,307 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="detail.css" />
+    <title>The MOVIE</title>
+  </head>
+  <body>
+    <div id="myModal" class="modal">
+      <!-- 모달 컨텐츠 -->
+      <div class="modal-box">
+        <div class="modal-image"></div>
+        <div class="modal-content"></div>
+        </div>
+        <div class="modal-box2"><div class="middle">
+          <div class="choose-rating">
+            <p>별점을 선택해주세요</p>
+            <div class="rating">
+              <span class="rating__result"></span> 
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+              <i class="rating__star far fa-star"></i>
+          </div>
+            <p></p>
+            <form class="input-box" action="">
+              <p>닉네임</p>
+              <input type="text" id="name"></input>
+              <p>비밀번호</p>
+              <input type="password" id="password"></input>
+              <p>리뷰 내용</p>
+              <textarea type="text" id="review-text"></textarea>
+              <button>등록</button>
+            </form>
+          </div>
+      </div>
+      </div>
+      <div class="modal-box3">
+        <!-- 기능개발 후 지울 것 -->
+        <div class="review-box">
+          <p>김동원</p>
+          <p>평점 : 4</p>
+          <p>개꿀잼 ㅇㅈ?</p>
+        </div>
+        <div class="review-box">
+          <p>김재연</p>
+          <p>평점 : 5</p>
+          <p>어 ㅇㅈ</p>
+        </div>
+        <div class="review-box">
+          <p>이경복</p>
+          <p>평점 : 1</p>
+          <p>난 재미없던데 ㅅㄱ</p>
+        </div>
+        <!-- 기능개발 후 지울 것 -->
+      </div>
+      
+    </div>
+    <div class="header">
+      <div class="logo">
+        <a href=""><strong>The MOVIE</strong> </a>
+      </div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>The MOVIE</title>
-</head>
+      <button id="cate" class="cate"><strong>Category</strong></button>
 
-<body>
-  <div class="header">
-    <div class="logo">
-      <a href=""><strong>The MOVIE</strong> </a>
+      <div id="cate_menu" class="cate_menu">
+        <button id="drama"><strong>드라마</strong></button>
+        <button id="romance"><strong>로맨스</strong></button>
+        <button id="comedy"><strong>코미디</strong></button>
+        <button id="animation"><strong>애니메이션</strong></button>
+        <button id="thriller"><strong>스릴러</strong></button>
+        <button id="mystery"><strong>미스터리</strong></button>
+        <button id="action"><strong>액션</strong></button>
+        <button id="fantasy"><strong>판타지</strong></button>
+        <button id="horror"><strong>공포</strong></button>
+      </div>
+
+      <div class="search">
+        <label for="query"
+          ><i class="fa-solid fa-magnifying-glass" style="color: black"></i
+        ></label>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="  영화 제목을 입력하세요"
+        />
+        <button class="searchBtn" id="searchBtn">Search</button>
+      </div>
     </div>
 
-    <button id="cate" class="cate"><strong>Category</strong></button>
+    <div class="final">
+      <div id="center" class="center">
+        <div class="slide">
+          <div id="main1" class="main1">
+            <div class="detail">
+              <button id="exBtn1" class="exBtn">더 보기</button>
+            </div>
+          </div>
 
-    <div id="cate_menu" class="cate_menu">
-      <button id="drama"><strong>드라마</strong></button>
-      <button id="romance"><strong>로맨스</strong></button>
-      <button id="comedy"><strong>코미디</strong></button>
-      <button id="animation"><strong>애니메이션</strong></button>
-      <button id="thriller"><strong>스릴러</strong></button>
-      <button id="mystery"><strong>미스터리</strong></button>
-      <button id="action"><strong>액션</strong></button>
-      <button id="fantasy"><strong>판타지</strong></button>
-      <button id="horror"><strong>공포</strong></button>
-    </div>
+          <div id="more1" class="more1">
+            <button id="close1" class="close">
+              <i class="fa-solid fa-xmark" style="color: #000000"></i>
+            </button>
+            <div id="seemore1" class="seemore">
+              <h1 id="title" class="title"></h1>
+              <h2 id="original_title" class="original_title"></h2>
+              <p id="release_date" class="release_date"></p>
+              <p id="vote_average" class="vote_average"></p>
+              <div id="overview" class="overview"></div>
+            </div>
+            <div id="poster_path" class="poster_path"></div>
+          </div>
+        </div>
 
-    <div class="search">
-      <label for="query"><i class="fa-solid fa-magnifying-glass" style="color: black"></i></label>
-      <input type="text" id="searchInput" placeholder="  영화 제목을 입력하세요" />
-      <button class="searchBtn" id="searchBtn">Search</button>
+        <div class="slide">
+          <div id="main2" class="main2">
+            <div class="detail">
+              <button id="exBtn2" class="exBtn">더 보기</button>
+            </div>
+          </div>
+
+          <div id="more2" class="more2">
+            <button id="close2" class="close">
+              <i class="fa-solid fa-xmark" style="color: #000000"></i>
+            </button>
+            <div class="seemore">
+              <h1 id="title" class="title"></h1>
+              <h2 id="original_title" class="original_title"></h2>
+              <p id="release_date" class="release_date"></p>
+              <p id="vote_average" class="vote_average"></p>
+              <div id="overview" class="overview"></div>
+            </div>
+            <div id="poster_path" class="poster_path"></div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div id="main3" class="main3">
+            <div class="detail">
+              <button id="exBtn3" class="exBtn">더 보기</button>
+            </div>
+          </div>
+
+          <div id="more3" class="more3">
+            <button id="close3" class="close">
+              <i class="fa-solid fa-xmark" style="color: #000000"></i>
+            </button>
+            <div class="seemore">
+              <h1 id="title" class="title"></h1>
+              <h2 id="original_title" class="original_title"></h2>
+              <p id="release_date" class="release_date"></p>
+              <p id="vote_average" class="vote_average"></p>
+              <div id="overview" class="overview"></div>
+            </div>
+            <div id="poster_path" class="poster_path"></div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div id="main4" class="main4">
+            <div class="detail">
+              <button id="exBtn4" class="exBtn">더 보기</button>
+            </div>
+          </div>
+
+          <div id="more4" class="more4">
+            <button id="close4" class="close">
+              <i class="fa-solid fa-xmark" style="color: #000000"></i>
+            </button>
+            <div class="seemore">
+              <h1 id="title" class="title"></h1>
+              <h2 id="original_title" class="original_title"></h2>
+              <p id="release_date" class="release_date"></p>
+              <p id="vote_average" class="vote_average"></p>
+              <div id="overview" class="overview"></div>
+            </div>
+            <div id="poster_path" class="poster_path"></div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div id="main5" class="main5">
+            <div class="detail">
+              <button id="exBtn5" class="exBtn">더 보기</button>
+            </div>
+          </div>
+
+          <div id="more5" class="more5">
+            <button id="close5" class="close">
+              <i class="fa-solid fa-xmark" style="color: #000000"></i>
+            </button>
+            <div class="seemore">
+              <h1 id="title" class="title"></h1>
+              <h2 id="original_title" class="original_title"></h2>
+              <p id="release_date" class="release_date"></p>
+              <p id="vote_average" class="vote_average"></p>
+              <div id="overview" class="overview"></div>
+            </div>
+            <div id="poster_path" class="poster_path"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mainbutton">
+        <button id="mbtn1" class="mbtn1">
+          <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
+        </button>
+        <button id="mbtn2" class="mbtn2">
+          <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
+        </button>
+        <button id="mbtn3" class="mbtn3">
+          <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
+        </button>
+        <button id="mbtn4" class="mbtn4">
+          <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
+        </button>
+        <button id="mbtn5" class="mbtn5">
+          <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
+        </button>
+      </div>
+
+      <div class="slidebutton">
+        <button id="leftbtn" class="leftbtn">
+          <i class="fa-solid fa-chevron-left fa-lg" style="color: black"></i>
+        </button>
+        <button id="rightbtn" class="rightbtn">
+          <i class="fa-solid fa-chevron-right fa-lg" style="color: black"></i>
+        </button>
+      </div>
     </div>
+  
+  <div class="cardContainer">
+    <h1 class="top"><i class="fa-solid fa-splotch fa-spin" style="color: #FFD43B;"></i> <strong>실시간 인기 영화</strong></h1>
+    <div id="live1" class="live"></div>
+    <div class="nextbutton">
+      <button id="NLB1" class="NLB"><i class="fa-solid fa-chevron-left fa-lg"></i></button>
+      <button id="NRB1" class="NRB"><i class="fa-solid fa-chevron-right fa-lg"></i></button>
+    </div>
+    <button id="movieadd1" class="searchadd"> 영화 더 보기 </button>
   </div>
-
-  <div class="final">
-    <div id="center" class="center">
-      <div class="slide">
-        <div id="main1" class="main1">
-          <div class="detail">
-            <button id="exBtn1" class="exBtn">더 보기</button>
-          </div>
-        </div>
-
-        <div id="more1" class="more1">
-          <button id="close1" class="close">
-            <i class="fa-solid fa-xmark" style="color: #000000"></i>
-          </button>
-          <div id="seemore1" class="seemore">
-            <h1 id="title" class="title"></h1>
-            <h2 id="original_title" class="original_title"></h2>
-            <p id="release_date" class="release_date"></p>
-            <p id="vote_average" class="vote_average"></p>
-            <div id="overview" class="overview"></div>
-          </div>
-          <div id="poster_path" class="poster_path"></div>
-        </div>
-      </div>
-
-      <div class="slide">
-        <div id="main2" class="main2">
-          <div class="detail">
-            <button id="exBtn2" class="exBtn">더 보기</button>
-          </div>
-        </div>
-
-        <div id="more2" class="more2">
-          <button id="close2" class="close">
-            <i class="fa-solid fa-xmark" style="color: #000000"></i>
-          </button>
-          <div class="seemore">
-            <h1 id="title" class="title"></h1>
-            <h2 id="original_title" class="original_title"></h2>
-            <p id="release_date" class="release_date"></p>
-            <p id="vote_average" class="vote_average"></p>
-            <div id="overview" class="overview"></div>
-          </div>
-          <div id="poster_path" class="poster_path"></div>
-        </div>
-      </div>
-
-      <div class="slide">
-        <div id="main3" class="main3">
-          <div class="detail">
-            <button id="exBtn3" class="exBtn">더 보기</button>
-          </div>
-        </div>
-
-        <div id="more3" class="more3">
-          <button id="close3" class="close">
-            <i class="fa-solid fa-xmark" style="color: #000000"></i>
-          </button>
-          <div class="seemore">
-            <h1 id="title" class="title"></h1>
-            <h2 id="original_title" class="original_title"></h2>
-            <p id="release_date" class="release_date"></p>
-            <p id="vote_average" class="vote_average"></p>
-            <div id="overview" class="overview"></div>
-          </div>
-          <div id="poster_path" class="poster_path"></div>
-        </div>
-      </div>
-
-      <div class="slide">
-        <div id="main4" class="main4">
-          <div class="detail">
-            <button id="exBtn4" class="exBtn">더 보기</button>
-          </div>
-        </div>
-
-        <div id="more4" class="more4">
-          <button id="close4" class="close">
-            <i class="fa-solid fa-xmark" style="color: #000000"></i>
-          </button>
-          <div class="seemore">
-            <h1 id="title" class="title"></h1>
-            <h2 id="original_title" class="original_title"></h2>
-            <p id="release_date" class="release_date"></p>
-            <p id="vote_average" class="vote_average"></p>
-            <div id="overview" class="overview"></div>
-          </div>
-          <div id="poster_path" class="poster_path"></div>
-        </div>
-      </div>
-
-      <div class="slide">
-        <div id="main5" class="main5">
-          <div class="detail">
-            <button id="exBtn5" class="exBtn">더 보기</button>
-          </div>
-        </div>
-
-        <div id="more5" class="more5">
-          <button id="close5" class="close">
-            <i class="fa-solid fa-xmark" style="color: #000000"></i>
-          </button>
-          <div class="seemore">
-            <h1 id="title" class="title"></h1>
-            <h2 id="original_title" class="original_title"></h2>
-            <p id="release_date" class="release_date"></p>
-            <p id="vote_average" class="vote_average"></p>
-            <div id="overview" class="overview"></div>
-          </div>
-          <div id="poster_path" class="poster_path"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mainbutton">
-      <button id="mbtn1" class="mbtn1">
-        <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
-      </button>
-      <button id="mbtn2" class="mbtn2">
-        <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
-      </button>
-      <button id="mbtn3" class="mbtn3">
-        <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
-      </button>
-      <button id="mbtn4" class="mbtn4">
-        <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
-      </button>
-      <button id="mbtn5" class="mbtn5">
-        <i class="fa-solid fa-circle fa-lg" style="color: black"></i>
-      </button>
-    </div>
-
-    <div class="slidebutton">
-      <button id="leftbtn" class="leftbtn">
-        <i class="fa-solid fa-chevron-left fa-lg" style="color: black"></i>
-      </button>
-      <button id="rightbtn" class="rightbtn">
-        <i class="fa-solid fa-chevron-right fa-lg" style="color: black"></i>
-      </button>
-    </div>
-  </div>
-
-  <h1 class="top">
-    <i class="fa-solid fa-crown" style="color: #f5ee38"></i>
-    <strong>TOP 20</strong>
-  </h1>
 
   <div class="cardContainer">
-    <div id="live" class="live"></div>
+    <h1 class="top"><i class="fa-brands fa-kickstarter-k fa-beat" style="color: #bd0000;"></i> <strong>인기 한국 영화</strong>
+    </h1>
+    <div id="live2" class="live"></div>
+    <div class="nextbutton">
+      <button id="NLB2" class="NLB"><i class="fa-solid fa-chevron-left fa-lg"></i></button>
+      <button id="NRB2" class="NRB"><i class="fa-solid fa-chevron-right fa-lg"></i></button>
+    </div>
+    <button id="movieadd2" class="searchadd"> 영화 더 보기 </button>
   </div>
-  <button id="movieadd" class="searchadd"> 영화 더 보기 </button>
+
+  <div class="cardContainer">
+    <h1 class="top"><i class="fa-solid fa-motorcycle fa-bounce" style="color: #313687;"></i> <strong>액션 영화 순위</strong>
+    </h1>
+    <div id="live3" class="live"></div>
+    <div class="nextbutton">
+      <button id="NLB3" class="NLB"><i class="fa-solid fa-chevron-left fa-lg"></i></button>
+      <button id="NRB3" class="NRB"><i class="fa-solid fa-chevron-right fa-lg"></i></button>
+    </div>
+    <button id="movieadd3" class="searchadd"> 영화 더 보기 </button>
+  </div>
+
+  <div class="cardContainer">
+    <h1 class="top"><i class="fa-solid fa-person-praying"></i><i class="fa-solid fa-heart fa-beat"
+        style="color: #ff4242;"></i> <strong>로맨스 영화 순위</strong></h1>
+    <div id="live4" class="live"></div>
+    <div class="nextbutton">
+      <button id="NLB4" class="NLB"><i class="fa-solid fa-chevron-left fa-lg"></i></button>
+      <button id="NRB4" class="NRB"><i class="fa-solid fa-chevron-right fa-lg"></i></button>
+    </div>
+    <button id="movieadd4" class="searchadd"> 영화 더 보기 </button>
+  </div>
+
+  <div class="cardContainer">
+    <h1 class="top"><i class="fa-solid fa-hat-wizard fa-bounce" style="color: #0049c7;"></i> <strong>판타지 영화 순위</strong>
+    </h1>
+    <div id="live5" class="live"></div>
+    <div class="nextbutton">
+      <button id="NLB5" class="NLB"><i class="fa-solid fa-chevron-left fa-lg"></i></button>
+      <button id="NRB5" class="NRB"><i class="fa-solid fa-chevron-right fa-lg"></i></button>
+    </div>
+    <button id="movieadd5" class="searchadd"> 영화 더 보기 </button>
+  </div>
+
+  <div class="cardContainer">
+    <h1 class="top"><i class="fa-brands fa-github-alt fa-bounce" style="color: #7e00c2;"></i> <strong>애니메이션 영화
+        순위</strong></h1>
+    <div id="live6" class="live"></div>
+    <div class="nextbutton">
+      <button id="NLB6" class="NLB"><i class="fa-solid fa-chevron-left fa-lg"></i></button>
+      <button id="NRB6" class="NRB"><i class="fa-solid fa-chevron-right fa-lg"></i></button>
+    </div>
+    <button id="movieadd6" class="searchadd"> 영화 더 보기 </button>
+  </div>
 
   <script defer src="main.js"></script>
-  <script defer src="api.js"></script>
+  <script type="module" src="api.js"></script>
   <script src="https://kit.fontawesome.com/8bc9e38e4e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
+
