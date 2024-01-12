@@ -149,7 +149,7 @@ function createMovieCard(index, poster_path, id, title, overview, vote) {
     document.querySelector(".modal-image").innerHTML = `
     <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
     <button class="trailer"> 예고편 보기 </button>
-    <span class="close">&times;</span>`;
+    <span class="close" id="detail-close">&times;</span>`;
     document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
     <p>⭐️ 평점 : ${vote}
     <h3>줄거리</h3>

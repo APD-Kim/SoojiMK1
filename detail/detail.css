@@ -11,6 +11,21 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+#edit-modal {
+  z-index: 1000;
+  display: none;
+  height: 100%;
+}
+
+.rq {
+  height: 30%;
+  align-items: start;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 5px solid cornflowerblue;
+}
+
 .modal::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
@@ -58,8 +73,9 @@
 }
 
 .modal-image {
-  width: 50%;
+  width: 30%;
 }
+
 .modal-image img {
   max-width: 100%;
   height: auto;
