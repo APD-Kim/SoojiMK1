@@ -64,7 +64,18 @@ app.get("/signup", (req, res) => {
   res.render("signup.ejs");
 });
 app.get("/ranking", (req, res) => {
-  res.render("ranking.ejs");
+  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1`;
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YTIwODRmMTRjN2Q4YmVkYTUwN2Y2Y2JhOTAzY2JjMCIsInN1YiI6IjY1OTdhMzIyZDdhNzBhMTIyZTZhNWJlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ac_Stz4Gal2NG_KroSZ8NaNIQ-Y8pO-t-kF2A03CjLs",
+    },
+  };
+  fetch(url, options)
+    .then((response) => response.json())
+    .then(({ results }) => res.render("ranking.ejs", { results: results }));
 });
 
 app.get("/login", (req, res) => {
