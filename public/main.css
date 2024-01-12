@@ -47,9 +47,11 @@ body {
   transition: all 0.3s ease-in-out;
   line-height: 1.5;
   background-color: #18191a;
+  color: #fff;
 }
 body.dark {
   background-color: #fff;
+  color: #000000;
 }
 .toggle {
   margin-left: 90%;
@@ -214,20 +216,21 @@ body.dark {
 }
 
 /* 다크 모드 시 */
-.lc:hover .dark {
+body.dark.lc:hover {
   box-shadow: 100px 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.nextbutton button .dark {
+body.dark.nextbutton button {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.searchadd .dark {
+body.dark.searchadd {
   border: 1px solid black;
-  color: black;
+  background-color: #18191a;
+  color: #000000;
 }
 
-.searchadd:hover .dark {
+body.dark.searchadd:hover {
   background-color: black;
   color: white;
 }
