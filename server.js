@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const fs = require("fs");
 
@@ -8,6 +9,7 @@ app.use(express.static(__dirname + "/img"));
 app.use(express.static(__dirname + "/feature_ranking"));
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname + "/views"));
 
 const { MongoClient, Timestamp } = require("mongodb");
 let db;
@@ -56,4 +58,8 @@ app.get("/ranking", (req, res) => {
     .catch((err) => {
       console.error(err);
     });
+});
+
+app.get("/", (req, res) => {
+  res.render("layout", { title: "EJS 템플릿 엔진 적용하기" });
 });

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="toggle">
+        <span class="sun"
+          ><i class="fa-solid fa-moon" style="color: #ffd43b"></i
+            ></i
+        ></span>
+        <span class="moon"
+          ><i class="fa-solid fa-sun" style="color: #fca066"></i></span>
+      </div>
+      <div class="header">
+        <div class="logo">
+          <a href=""><strong>The MOVIE</strong> </a>
+        </div>
+
+        <button id="cate" class="cate"><strong>Category</strong></button>
+
+        <div id="cate_menu" class="cate_menu">
+          <button id="drama"><strong>드라마</strong></button>
+          <button id="romance"><strong>로맨스</strong></button>
+          <button id="comedy"><strong>코미디</strong></button>
+          <button id="animation"><strong>애니메이션</strong></button>
+          <button id="thriller"><strong>스릴러</strong></button>
+          <button id="mystery"><strong>미스터리</strong></button>
+          <button id="action"><strong>액션</strong></button>
+          <button id="fantasy"><strong>판타지</strong></button>
+          <button id="horror"><strong>공포</strong></button>
+        </div>
+
+        <div id="search">
+          <!-- <label for="query"></label> -->
+          <!-- <input
+            type="text"
+            id="searchInput"
+            placeholder="  영화 제목을 입력하세요"
+          />
+          <button class="searchBtn" id="searchBtn">Search</button> -->
+          <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+          <a href="#"><i class="fa-solid fa-user"></i></a>
+        </div>
+      </div>
+    </header>
+    <script>
+      const body = document.querySelector("body"),
+        toggle = document.querySelector(".toggle");
+
+      //다크 모드 비활성화 -> 로컬스토리지 저장
+      toggle.addEventListener("click", () => {
+        localStorage.setItem("light", "해가 떴어요");
+        body.classList.toggle("dark");
+      });
+
+      toggle.addEventListener("click", () => {
+        // localStorage.removeItem("light", "밤이 되었습니다");
+        toggle.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
