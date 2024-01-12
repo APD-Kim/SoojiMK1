@@ -28,11 +28,6 @@ new MongoClient(url)
   .catch((err) => {
     console.log(err);
   });
-let arr = [];
-//[]
-// app.get("/", (req, res) => {
-//   res.render("main.ejs");
-// });
 
 app.get("/", async (req, res) => {
   let result = await reviewDb.find().toArray();
@@ -132,8 +127,3 @@ app.delete("/review/delete", async (req, res) => {
     res.status(500).send(e);
   }
 });
-
-//클래스, 오브젝트, 인스턴스
-//ODM, ORM
-
-//방금 만들어진 데이터의 _id값을 가져오려면 어떻게 해야할까?
