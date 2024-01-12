@@ -82,6 +82,7 @@ const ratingStars = [...document.getElementsByClassName("rating__star")];
 const ratingResult = document.querySelector(".rating__result");
 
 printRatingResult(ratingResult);
+let starCount = 0;
 
 function executeRating(stars, result) {
   const starClassActive = "rating__star fas fa-star";
@@ -91,6 +92,8 @@ function executeRating(stars, result) {
   stars.map((star) => {
     star.onclick = () => {
       i = stars.indexOf(star);
+      console.log(i);
+      starCount = i;
 
       if (star.className.indexOf(starClassUnactive) !== -1) {
         printRatingResult(result, i + 1);
@@ -108,3 +111,37 @@ function printRatingResult(result, num = 0) {
 }
 
 executeRating(ratingStars, ratingResult);
+
+const name = document.querySelector("#nickname");
+const password = document.querySelector("#password");
+const text = document.querySelector("#review-text");
+const accessBtn = document.querySelector("#access-btn");
+//상세페이지에서 등록버튼 클릭 시 출력
+accessBtn.addEventListener("click", (e) => {
+  e.preventDefault;
+  console.log(name.value);
+  console.log(password.value);
+  console.log(text.value);
+  console.log(starCount + 1);
+  name.value === "" ? alert(`닉네임 쓰세연`) : true;
+  password.value === "" ? alert(`비밀번호 쓰세연`) : true;
+  text.value === "" ? alert(`리뷰글 쓰세연`) : true;
+  let userInfo = {
+    name: name.value,
+    password: password.value,
+    text: text.value,
+    rating: starCount + 1,
+  };
+  localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  document.querySelector(".modal-box3").insertAdjacentHTML(
+    "beforeend",
+    `<div class="review-box">
+  <p>${name.value}</p>
+  <p>평점 : ${starCount + 1}</p>
+  <p>${text.value}</p>
+  <button>수정</button>
+  <button>삭제</button>
+</div>
+  `
+  );
+});
