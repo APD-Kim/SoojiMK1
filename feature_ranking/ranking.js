@@ -30,8 +30,6 @@ const createCard = ({ id, backdrop_path, title, overview, vote_average }) => {
     overview === "" ? `${title}` : `${overview.substring(0, 16)}...`;
   vote.innerText = `⭐️ ${vote_average}`;
 
-  boxImg.addEventListener("click", () => alert(`영화 id: ${id}`));
-
   boxImg.append(img);
   box.append(boxImg, h3, span, vote);
   container.append(box);
@@ -40,7 +38,7 @@ const createCard = ({ id, backdrop_path, title, overview, vote_average }) => {
 let currentPage = 2;
 const moreMovies = document.querySelector(".more");
 moreMovies.addEventListener("click", function () {
-  const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${currentPage}`;
+  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-US&page=${currentPage}`;
 
   fetch(url, options)
     .then((response) => response.json())
