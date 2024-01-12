@@ -1,6 +1,20 @@
+
 <main>
-  <!-- 모달 컨텐츠 -->
-  <!-- <div id="myModal" class="modal">
+  <div id="edit-modal" class="modal">
+    <div class="modal-box rq" >
+      <form action="/review/edit" method="POST" id="edit-form"></form>
+      <p>이름</p>
+    <input type="text" name="name" id="edit-name">
+    <p>평점</p>
+    <input type="text" id="edit-rating">
+    <p>내용</p>
+    <textarea name="text" id="edit-text"></textarea>
+    <button id="edit-btn" type="submit">수정하기</button>
+    <span class="close-button1 close" id="close-btn1">&times;</span>
+  </div>
+  </div>
+  <div id="myModal" class="modal">
+    <!-- 모달 컨텐츠 -->
     <div class="modal-box">
       <div class="modal-image"></div>
       <div class="modal-content"></div>
@@ -17,35 +31,38 @@
             <i class="rating__star far fa-star"></i>
         </div>
           <p></p>
-          <form class="input-box" action="">
+          <form class="input-box" action="/review" method="POST">
             <p>닉네임</p>
-            <input type="text" id="name"></input>
+            <input type="text" id="nickname" name="name"></input>
             <p>비밀번호</p>
-            <input type="password" id="password"></input>
+            <input type="password" id="password" name="password"></input>
             <p>리뷰 내용</p>
-            <textarea type="text" id="review-text"></textarea>
-            <button>등록</button>
+            <span name=></span>
+            <textarea type="text" id="review-text" name="text"></textarea>
+            <input type="hidden" id="starCountInput" name="rating">
+            <button type="submit" id="access-btn">등록</button>
           </form>
         </div>
     </div>
     </div>
+    <!-- 리뷰 박스 -->
     <div class="modal-box3">
+      <!-- 기능개발 후 지울 것 -->
+      <% for (let i = 0; i < review.length; i++)  {%>
       <div class="review-box">
-        <p>김동원</p>
-        <p>평점 : 4</p>
-        <p>개꿀잼 ㅇㅈ?</p>
+        <p><%= review[i].name %></p>
+        <p>평점 : <%= review[i].rating %></p>
+        <p><%= review[i].text %></p>
+        <button class="edit-review">수정</button>
+        <button class="delete-review">삭제</button>
+        <input class="edit-password" type="password" data-password="<%= review[i].password %>">
+        <input class="id" type="hidden" data-id=<%= review[i]._id %>>
       </div>
-      <div class="review-box">
-        <p>김재연</p>
-        <p>평점 : 5</p>
-        <p>어 ㅇㅈ</p>
-      </div>
-      <div class="review-box">
-        <p>이경복</p>
-        <p>평점 : 1</p>
-        <p>난 재미없던데 ㅅㄱ</p>
-      </div>
-    </div></div> -->
+      <% }%>
+      
+      <!-- 기능개발 후 지울 것 -->
+    </div>
+    </div>
 
   <div class="final">
     <div id="center" class="center">
@@ -291,9 +308,12 @@
     <button id="movieadd6" class="searchadd">영화 더 보기</button>
   </div>
 </main>
-<script defer src="main.js"></script>
+<script src="main.js" type="module"></script>
+<script src="detail.js" type="module"></script>
 <script type="module" src="api.js"></script>
 <script
   src="https://kit.fontawesome.com/8bc9e38e4e.js"
   crossorigin="anonymous"
 ></script>
+
+
