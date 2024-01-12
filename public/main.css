@@ -237,7 +237,7 @@ body.dark.lc:hover {
   transition: 0.5s;
 }
 
-body.dark.nextbutton button {
+/* body.dark.nextbutton button {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -250,7 +250,7 @@ body.dark.searchadd {
 body.dark.searchadd:hover {
   background-color: black;
   color: white;
-}
+} */
 
 /* -----main 부분----- */
 
@@ -406,6 +406,7 @@ body.dark.searchadd:hover {
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 50px;
+
   position: absolute;
   right: 10%;
   top: 10%;

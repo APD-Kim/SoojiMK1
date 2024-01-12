@@ -68,8 +68,7 @@ for (let i = 1; i <= divCount; i++) {
 
 // -----live에 카드 생성-----
 
-
-const lcContainer = document.getElementById('live1');
+const lcContainer = document.getElementById("live1");
 
 let currentPage = 0;
 let functionSelection = 0;
@@ -165,41 +164,44 @@ function createMovieCard(index, poster_path, id, title, overview, vote) {
 ///////////////////////////영화 생성///////////////////////////////////////
 
 function mainMovie(liveId, url) {
-    const fullUrl = `${url}`;
+  const fullUrl = `${url}`;
 
-    fetch(fullUrl, options)
-        .then(response => response.json())
-        .then(data => {
-            for (let index = 0; index < 15; index++) {
-                const movie = data.results[index];
-                if (movie) {
-                    const movieCard = createMovieCard(index, movie.poster_path, movie.id);
-                    document.getElementById(liveId).appendChild(movieCard);
-                } else {
-                    console.error(`No data for index ${index} in ${fullUrl}`);
-                }
-            }
-        })
-        .catch(err => {
-            console.error(err);
-        });
+  fetch(fullUrl, options)
+    .then((response) => response.json())
+    .then((data) => {
+      for (let index = 0; index < 15; index++) {
+        const movie = data.results[index];
+        if (movie) {
+          const movieCard = createMovieCard(index, movie.poster_path, movie.id);
+          document.getElementById(liveId).appendChild(movieCard);
+        } else {
+          console.error(`No data for index ${index} in ${fullUrl}`);
+        }
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const url2 = 'https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko';
-    const url3 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=28';
-    const url4 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=10749';
-    const url5 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=14';
-    const url6 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=16';
+document.addEventListener("DOMContentLoaded", function () {
+  const url2 =
+    "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
+  const url3 =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=28";
+  const url4 =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=10749";
+  const url5 =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=14";
+  const url6 =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=16";
 
-    mainMovie('live2', url2);
-    mainMovie('live3', url3);
-    mainMovie('live4', url4);
-    mainMovie('live5', url5);
-    mainMovie('live6', url6);
+  mainMovie("live2", url2);
+  mainMovie("live3", url3);
+  mainMovie("live4", url4);
+  mainMovie("live5", url5);
+  mainMovie("live6", url6);
 });
-
-
 
 //-----카테고리별 카드 생성-----
 
@@ -260,19 +262,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //-----검색 카드 생성-----
 
-const searchBtn = document.getElementById("searchBtn");
-searchBtn.addEventListener("click", function () {
-  lcContainer.innerHTML = "";
-  handleSearch();
-});
+// const searchBtn = document.getElementById("searchBtn");
+// searchBtn.addEventListener("click", function () {
+//   lcContainer.innerHTML = "";
+//   handleSearch();
+// });
 
-const searchInput = document.getElementById("searchInput");
-searchInput.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    lcContainer.innerHTML = "";
-    handleSearch();
-  }
-});
+// const searchInput = document.getElementById("searchInput");
+// searchInput.addEventListener("keyup", function (event) {
+//   if (event.key === "Enter") {
+//     lcContainer.innerHTML = "";
+//     handleSearch();
+//   }
+// });
 
 function handleSearch() {
   const query = searchInput.value;
