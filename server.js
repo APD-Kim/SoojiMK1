@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const fs = require("fs");
 app.use(express.static(__dirname + "/public"));
@@ -6,6 +7,7 @@ app.use(express.static(__dirname + "/detail"));
 app.use(express.static(__dirname + "/img"));
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname + "/views"));
 
 const { MongoClient, Timestamp } = require("mongodb");
 let db;
@@ -24,9 +26,9 @@ new MongoClient(url)
     console.log(err);
   });
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/main.html");
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(__dirname + "/main.html");
+// });
 
 app.get("/search", (req, res) => {
   const imagePath = "/js.png";
@@ -35,4 +37,8 @@ app.get("/search", (req, res) => {
 
 app.get("/ranking", (req, res) => {
   res.render("ranking.ejs");
+});
+
+app.get("/", (req, res) => {
+  res.render("layout", { title: "EJS 템플릿 엔진 적용하기" });
 });
