@@ -1,8 +1,10 @@
 /* ------폰트 부분------ */
 
-@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;1,100&family=Nanum+Gothic:wght@400;700&family=Noto+Sans+KR:wght@100&family=Noto+Serif+KR:wght@200&family=Roboto:wght@700&family=Rubik+Doodle+Shadow&family=Rubik+Glitch&family=Rubik+Lines&family=Rubik+Scribble&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;1,100&family=Nanum+Gothic:wght@400;700&family=Noto+Sans+KR:wght@100&family=Noto+Serif+KR:wght@200&family=Roboto:wght@700&family=Rubik+Doodle+Shadow&family=Rubik+Glitch&family=Rubik+Lines&family=Rubik+Scribble&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Moirai+One&display=swap');
 
 .header,
 .cate {
@@ -23,6 +25,17 @@
 .live,
 .movieadd {
   font-family: "Noto Sans KR", sans-serif;
+}
+
+.rank {
+  font-family: 'Anton', sans-serif;
+}
+
+@font-face {
+  font-family: 'JalnanGothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 button {
@@ -97,6 +110,7 @@ a {
   border: 1px solid black;
   background-color: white;
 
+  visibility: hidden;
   display: block;
   opacity: 0;
   transform: translateY(100%);
@@ -106,6 +120,7 @@ a {
 .cate_menu.active button {
   opacity: 1;
   transform: translateY(0);
+  visibility: visible;
 }
 
 .cate_menu button:hover {
