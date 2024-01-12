@@ -8,7 +8,14 @@
   </head>
   <body>
     <header>
-      <div class="toggle"></div>
+      <div class="toggle">
+        <span class="sun"
+          ><i class="fa-solid fa-moon" style="color: #ffd43b"></i
+            ></i
+        ></span>
+        <span class="moon"
+          ><i class="fa-solid fa-sun" style="color: #fca066"></i></span>
+      </div>
       <div class="header">
         <div class="logo">
           <a href=""><strong>The MOVIE</strong> </a>
@@ -45,11 +52,16 @@
       const body = document.querySelector("body"),
         toggle = document.querySelector(".toggle");
 
+      //다크 모드 비활성화 -> 로컬스토리지 저장
       toggle.addEventListener("click", () => {
+        localStorage.setItem("light", "해가 떴어요");
         body.classList.toggle("dark");
       });
 
-      toggle.addEventListener("click", () => toggle.classList.toggle("active"));
+      toggle.addEventListener("click", () => {
+        // localStorage.removeItem("light", "밤이 되었습니다");
+        toggle.classList.toggle("active");
+      });
     </script>
   </body>
 </html>
