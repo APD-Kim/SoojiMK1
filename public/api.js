@@ -113,7 +113,7 @@ function mainMovie(liveId, url) {
     fetch(fullUrl, options)
         .then(response => response.json())
         .then(data => {
-            for (let index = 0; index < 10; index++) {
+            for (let index = 0; index < 15; index++) {
                 const movie = data.results[index];
                 if (movie) {
                     const movieCard = createMovieCard(index, movie.poster_path, movie.id);

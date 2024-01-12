@@ -403,7 +403,7 @@ a {
 }
 
 .live {
-    width: 650vw;
+    width: 10000%;
     transition: transform 0.5s ease-in-out;
 }
 

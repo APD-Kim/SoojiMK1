@@ -70,13 +70,13 @@ let nextPosition = 0;
 
 function nextSlide(direction, liveNumber) {
     if (direction === 'right') {
-        nextPosition -= 80;
+        nextPosition -= 66;
     } else if (direction === 'left') {
-        nextPosition += 80;
+        nextPosition += 66;
     }
 
     let live = document.getElementById('live' + liveNumber);
-    live.style.transform = `translate(${nextPosition % 320}vw)`;
+    live.style.transform = `translate(${nextPosition % 264}vw)`;
 }
 
 for (let i = 1; i <= 6; i++) {
