@@ -6,20 +6,26 @@ const fs = require("fs");
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/detail"));
 app.use(express.static(__dirname + "/img"));
+
+app.use(express.static(__dirname + "/landing"));
+// app.set("views", path.join(__dirname + "/views"));
 app.use(express.static(__dirname + "/feature_ranking"));
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname + "/views"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const { MongoClient, Timestamp } = require("mongodb");
+const { MongoClient, Timestamp, ObjectId } = require("mongodb");
 let db;
+let reviewDb;
 const url =
-  "mongodb+srv://admin:lol940620@cluster0.yh43doi.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://admin:lol940620@cluster0.2samj3t.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(url);
 new MongoClient(url)
   .connect()
   .then((client) => {
     console.log("DB연결성공");
-    db = client.db("forum");
+    reviewDb = client.db("forum").collection("review");
     app.listen(5555, () => {
       console.log("http://localhost:5555 에서 서버 실행중");
     });
@@ -28,34 +34,97 @@ new MongoClient(url)
     console.log(err);
   });
 
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YTIwODRmMTRjN2Q4YmVkYTUwN2Y2Y2JhOTAzY2JjMCIsInN1YiI6IjY1OTdhMzIyZDdhNzBhMTIyZTZhNWJlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ac_Stz4Gal2NG_KroSZ8NaNIQ-Y8pO-t-kF2A03CjLs",
-  },
-};
+app.get("/", async (req, res) => {
+  let result = await reviewDb.find().toArray();
+  res.render("layout", { title: "EJS 템플릿 엔진 적용하기", review: result });
+});
 
-app.get("/", (req, res) => {
-  res.render("layout.ejs");
+app.post("/review", async (req, res) => {
+  let body = req.body;
+  console.log(body);
+  try {
+    const result = await reviewDb.insertOne({
+      name: body.name,
+      password: body.password,
+      text: body.text,
+      rating: body.rating,
+    });
+    console.log(result);
+    res.json({ id: result.insertedId });
+  } catch (e) {
+    res.status(500).send("server error");
+  }
 });
 
 app.get("/search", (req, res) => {
   res.render("search.ejs");
 });
 
+app.get("/signup", (req, res) => {
+  res.render("signup.ejs");
+});
 app.get("/ranking", (req, res) => {
-  let currentPage = 0;
-  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${
-    currentPage + 1
-  }`;
-  fetch(url, options)
-    .then((response) => response.json())
-    .then(({ results }) => {
-      res.render("ranking.ejs", { results: results });
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  res.render("ranking.ejs");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login.ejs");
+});
+
+app.get("/passwordcheck", (req, res) => {
+  res.render("pwcheck.ejs");
+});
+
+app.get("/landing", (req, res) => {
+  res.render("join.ejs");
+});
+
+app.get("/search/review", async (req, res) => {
+  try {
+    const id = req.query.id;
+    console.log(id);
+    let reviewData = await reviewDb.findOne({ _id: new ObjectId(`${id}`) });
+    console.log(reviewData);
+    if (reviewData) {
+      res.json(reviewData);
+    } else {
+      res.status(404).send("해당 리뷰가 없습니다");
+    }
+  } catch (e) {
+    console.error(e);
+    res.status(500).send(e);
+  }
+});
+
+app.post("/review/edit", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id, name, text, rating } = req.body;
+    let reviewData = await reviewDb.findOne({ _id: new ObjectId(`${id}`) });
+    const result = await reviewDb.updateOne(
+      { _id: new ObjectId(`${id}`) },
+      { $set: { name: name, text: text, rating: rating } }
+    );
+    if (result.modifiedCount === 0) {
+      throw Error("업데이트 실패: 문서가 안보임");
+    }
+    // res.redirect("/");
+  } catch (e) {
+    console.log(e);
+    res.status(500).send(e);
+  }
+});
+
+app.delete("/review/delete", async (req, res) => {
+  try {
+    console.log(req.query.id);
+    const id = req.query.id;
+    let reviewData = await reviewDb.findOne({ _id: new ObjectId(`${id}`) });
+    const result = await reviewDb.deleteOne({ _id: new ObjectId(`${id}`) });
+    console.log(reviewData);
+    res.json(reviewData);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send(e);
+  }
 });

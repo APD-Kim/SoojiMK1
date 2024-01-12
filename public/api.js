@@ -150,7 +150,7 @@ function createMovieCard(index, poster_path, id, title, overview, vote) {
     document.querySelector(".modal-image").innerHTML = `
     <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
     <button class="trailer"> 예고편 보기 </button>
-    <span class="close">&times;</span>`;
+    <span class="close-button2 close" id="detail-close">&times;</span>`;
     document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
     <p>⭐️ 평점 : ${vote}
     <h3>줄거리</h3>
@@ -202,6 +202,25 @@ document.addEventListener("DOMContentLoaded", function () {
   mainMovie("live5", url5);
   mainMovie("live6", url6);
 });
+
+// document.addEventListener("DOMContentLoaded", function () {
+const url2 =
+  "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
+const url3 =
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=28";
+const url4 =
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=10749";
+const url5 =
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=14";
+const url6 =
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=16";
+
+mainMovie("live2", url2);
+mainMovie("live3", url3);
+mainMovie("live4", url4);
+mainMovie("live5", url5);
+mainMovie("live6", url6);
+// });
 
 //-----카테고리별 카드 생성-----
 
@@ -308,15 +327,15 @@ function renderMovies(movies) {
 
 //-----영화 더 보기-----
 const movieadd = document.getElementById("movieadd");
-movieadd.addEventListener("click", function () {
-  if (functionSelection === 1) {
-    fetchMoreMovies();
-  } else if (functionSelection === 2) {
-    handleSearch();
-  } else if (functionSelection === 3) {
-    fetchMoviesByGenre(selectedGenreId);
-  }
-});
+// movieadd.addEventListener("click", function () {
+//   if (functionSelection === 1) {
+//     fetchMoreMovies();
+//   } else if (functionSelection === 2) {
+//     handleSearch();
+//   } else if (functionSelection === 3) {
+//     fetchMoviesByGenre(selectedGenreId);
+//   }
+// });
 
 export default options;
 export { fetchMoreMovies };
