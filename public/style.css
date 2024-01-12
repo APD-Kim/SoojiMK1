@@ -42,6 +42,10 @@ button {
   cursor: pointer;
 }
 
+body {
+  background-color: black;
+}
+
 /* -----헤드 부분-----*/
 
 .header {
@@ -393,7 +397,6 @@ a {
   
     color: white;
     background-color: #252525;
-    border: 0.5px solid white;
     
     font-family: 'JalnanGothic';
 }
