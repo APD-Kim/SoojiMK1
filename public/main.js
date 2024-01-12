@@ -64,28 +64,33 @@ leftbtn.addEventListener('click', function () {
 
 
 
-
 // -----nextbutton 클릭 시 페이지 이동-----
 
 let nextPosition = 0;
 
-function nextSlide(direction) {
+function nextSlide(direction, liveNumber) {
     if (direction === 'right') {
         nextPosition -= 80;
     } else if (direction === 'left') {
         nextPosition += 80;
     }
 
-    document.querySelector('.live').style.transform = `translate(${nextPosition % 320}vw)`;
+    let live = document.getElementById('live' + liveNumber);
+    live.style.transform = `translate(${nextPosition % 320}vw)`;
 }
 
-NRB.addEventListener('click', function () {
-    nextSlide('right');
-});
+for (let i = 1; i <= 6; i++) {
+    let NRB = document.getElementById('NRB' + i);
+    let NLB = document.getElementById('NLB' + i);
 
-NLB.addEventListener('click', function () {
-    nextSlide('left');
-});
+    NRB.addEventListener('click', function () {
+        nextSlide('right', i);
+    });
+
+    NLB.addEventListener('click', function () {
+        nextSlide('left', i);
+    });
+}
 
 
 
