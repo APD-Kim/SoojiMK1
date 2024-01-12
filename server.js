@@ -38,7 +38,7 @@ const options = {
 };
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/main.html");
+  res.render("layout.ejs");
 });
 
 app.get("/search", (req, res) => {
@@ -58,8 +58,4 @@ app.get("/ranking", (req, res) => {
     .catch((err) => {
       console.error(err);
     });
-});
-
-app.get("/", (req, res) => {
-  res.render("layout", { title: "EJS 템플릿 엔진 적용하기" });
 });
