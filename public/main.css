@@ -37,7 +37,6 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
-
   position: sticky;
   top: 0;
   left: 20;
@@ -52,34 +51,34 @@ body.dark {
   background-color: #fff;
 }
 .toggle {
-  padding: 0 20px 20px 0;
   margin-left: 90%;
   position: relative;
   align-items: center;
   justify-content: right;
-  height: 60px;
-  width: 150px;
+  height: 40px;
+  width: 100px;
   border-radius: 100px;
   background-color: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.548);
   cursor: pointer;
 }
 .toggle::before {
   content: "";
   position: absolute;
-  height: 50px;
-  width: 50px;
+  height: 28px;
+  width: 28px;
   background-color: #18191a;
   border-radius: 50%;
   top: 50%;
   left: 14px;
   transform: translateY(-50%);
+  border-radius: 100px;
+  box-shadow: 10px 5px 20px rgba(206, 192, 0, 0.548);
   transition: all 0.3s ease-in-out;
 }
 .toggle.active::before {
   background-color: #4070f4;
-
-  left: calc(100% - 14px - 50px);
+  left: calc(100% + 10px - 50px);
 }
 .logo {
   display: flex;
