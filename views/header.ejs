@@ -11,48 +11,61 @@
 <body>
   <header>
     <div class="light"></div>
-    <div class="toggle">
-      <span class="sun"><i class="fa-solid fa-moon" style="color: #ffd43b"></i></i></span>
-      <span class="moon"><i class="fa-solid fa-sun" style="color: #fca066"></i></span>
-    </div>
+        <div class="toggle">
+          <span class="sun"><i class="fa-solid fa-moon" style="color: #ffd43b"></i></i></span>
+          <span class="moon"><i class="fa-solid fa-sun" style="color: #fca066"></i></span>
+        </div>
     <div class="light"></div>
 
-
     <div class="header">
+      <div class="search-container">
+        <form action="" id="form" method="GET">
+          <!-- name 값으로 검색결과 연결 -->
+          <input
+            class="search-input"
+            type="text"
+            placeholder="Search anything..."
+            name="q"
+            autocapitalize="off"
+          />
+          <div class="clear-icon">
+            <i class="fa-regular fa-circle-xmark"></i>
+          </div>
+          <button class="search-icon" type="button" onclick="search()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+
       <div class="logo">
         <a href=""><strong>The MOVIE</strong> </a>
-
       </div>
-
+      <!-- Category menu -->
       <button id="cate" class="cate"><strong>Category</strong></button>
-
-      <div id="cate_menu" class="cate_menu">
-        <button id="drama"><strong>드라마</strong></button>
-        <button id="romance"><strong>로맨스</strong></button>
-        <button id="comedy"><strong>코미디</strong></button>
-        <button id="animation"><strong>애니메이션</strong></button>
-        <button id="thriller"><strong>스릴러</strong></button>
-        <button id="mystery"><strong>미스터리</strong></button>
-        <button id="action"><strong>액션</strong></button>
-        <button id="fantasy"><strong>판타지</strong></button>
-        <button id="horror"><strong>공포</strong></button>
+          <div id="cate_menu" class="cate_menu">
+            <button id="drama"><strong>드라마</strong></button>
+            <button id="romance"><strong>로맨스</strong></button>
+            <button id="comedy"><strong>코미디</strong></button>
+            <button id="animation"><strong>애니메이션</strong></button>
+            <button id="thriller"><strong>스릴러</strong></button>
+            <button id="mystery"><strong>미스터리</strong></button>
+            <button id="action"><strong>액션</strong></button>
+            <button id="fantasy"><strong>판타지</strong></button>
+            <button id="horror"><strong>공포</strong></button>
+          </div>
+      <!-- 마이페이지 url -->
+      <div class="user-container">
+        <button class="search-icon" type="button"  onClick="location.href='mypage.ejs'">
+          <i class="fa-solid fa-user"></i>
+        </button>
       </div>
 
-      <div id="search">
-        <!-- <label for="query"></label> -->
-        <!-- <input
-            type="text"
-            id="searchInput"
-            placeholder="  영화 제목을 입력하세요"
-          />
-          <button class="searchBtn" id="searchBtn">Search</button> -->
-        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-        <a href="#"><i class="fa-solid fa-user"></i></a>
-      </div>
     </div>
   </header>
   <script>
-    const body = document.querySelector("body"),
+
+     //----------------토글 --------------------
+     const body = document.querySelector("body"),
       toggle = document.querySelector(".toggle");
 
     //다크 모드 비활성화 -> 로컬스토리지 저장
@@ -65,6 +78,52 @@
       // localStorage.removeItem("light", "밤이 되었습니다");
       toggle.classList.toggle("active");
     });
+
+
+    //----------------검색 바 --------------------
+      const input = document.querySelector(".search-input");
+      const clearIcon = document.querySelector(".clear-icon");
+      const searchIcon = document.querySelector(".search-icon");
+
+      const form = document.getElementById("form");
+
+      input.addEventListener("keydown", function (e) {
+        clearIcon.classList.add("active");
+
+        /* 1글자 0글자일 때 x표시 없애기*/
+        if (
+          (e.code === "Backspace" && input.value.length === 1) ||
+          (e.code === "Backspace" && input.value.length === 0)
+        )
+          clearIcon.classList.remove("active");
+
+        /* 검색 페이지로 이동 */
+        if (e.code === "Enter" && input.value === "") {
+          e.preventDefault();
+          clearIcon.classList.remove("active");
+        }
+
+        if (e.code === "Enter" && input.value !== "") search();
+      });
+
+      const search = () => {
+        input.classList.add("active");
+        /* 검색 페이지로 이동 */
+        if (input.value !== "") {
+          form.action = "/search";
+          searchIcon.type = "submit";
+        }
+      };
+
+      clearIcon.onclick = function () {
+        input.value = "";
+        form.action = "";
+        searchIcon.type = "button";
+        clearIcon.classList.remove("active");
+        input.classList.remove("active");
+      };
+
+
   </script>
 </body>
 
