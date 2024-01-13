@@ -184,6 +184,25 @@ function mainMovie(liveId, url) {
     });
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const url2 =
+    "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
+  const url3 =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=28";
+  const url4 =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=10749";
+  const url5 =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=14";
+  const url6 =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=16";
+
+  mainMovie("live2", url2);
+  mainMovie("live3", url3);
+  mainMovie("live4", url4);
+  mainMovie("live5", url5);
+  mainMovie("live6", url6);
+});
+
 // document.addEventListener("DOMContentLoaded", function () {
 const url2 =
   "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
