@@ -151,11 +151,17 @@ function createMovieCard(index, poster_path, id, title, overview, vote) {
     <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
     <button class="trailer"> 예고편 보기 </button>
     <span class="close-button2 close" id="detail-close">&times;</span>`;
-    document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
-    <p>⭐️ 평점 : ${vote}
-    <h3>줄거리</h3>
-    <p>${overview}</p>
-    <p>🤍</p>`;
+    // document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
+    // <p>⭐️ 평점 : ${vote}
+    // <h3>줄거리</h3>
+    // <p>${overview}</p>
+    // <p>🤍</p>`;
+    document.querySelector(".modal-content").innerHTML = `
+    <h2 class="movietitle">${title}</h2>
+    <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
+    <hr>
+    <p class="movieoverview">${overview}</p>
+    <button class="heart"><i class="fa-solid fa-heart"></i></button>`;
   }
   imageElement.addEventListener("click", handlePosterClick);
   return movieContainer;
