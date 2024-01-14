@@ -44,6 +44,10 @@ button {
 
 /* -----헤드 부분-----*/
 
+.space {
+  height: 130px;
+}
+
 .header {
   height: 100px;
   display: flex;
@@ -75,7 +79,7 @@ body.darkmode {
 .btn {
   margin-bottom: 60px;
   height: 40px;
-  width: 100px;
+  width: 120px;
   background-color: #fff;
   border-radius: 10em;
   padding: 0 0.5em;
@@ -84,7 +88,7 @@ body.darkmode {
     inset 0 -4px 4px rgba(207, 207, 207, 0.336);
 
   position: fixed;
-  margin-left: 90%;
+  margin-left: 88%;
   
 
   display: flex;
@@ -137,7 +141,7 @@ body.darkmode {
 }
 
 .darkmode .btn__indicator {
-  transform: translateX(3em);
+  transform: translateX(4em);
   background-color: #2b2b2b;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
 }
@@ -164,8 +168,11 @@ body.darkmode {
   border-radius: 50px;
   background-color: #fff;
 
-  margin-left: 80%;
-  margin-top: 50px;
+  position: fixed;
+  margin-left: 91%;
+  margin-top: 55px;
+
+  transform: translateX(-100%);
 }
 .search-container form {
   position: relative;
@@ -241,8 +248,10 @@ body.darkmode {
   padding: 0.3rem;
   border-radius: 50px;
   background-color: #fff;
-  /* margin-left: 10px; */
+  margin-left: 92%;
   margin-top: 55px;
+
+  position: fixed;
 }
 
 .user-icon {
