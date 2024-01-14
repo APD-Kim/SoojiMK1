@@ -16,12 +16,12 @@ function back() {
 function create_id() {
   let db;
   MongoClient.connect(
-    "mongodb+srv://admin:lol940620@cluster0.yh43doi.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://admin:black12456@cluster0.yh43doi.mongodb.net/?retryWrites=true&w=majority",
     function (err, client) {
       if (err) {
         return console.log(err);
       }
-      db = client.db("feature_landing");
+      db = client.db("forum");
       app.listen(8080, function () {
         console.log("listening on 8000");
       });
@@ -31,6 +31,9 @@ function create_id() {
   const id = document.querySelector("#id");
   const pw = document.querySelector("#pw");
   const pw_check = document.querySelector("#pw_check");
+  app.post("/add", async (req, res) => {
+    console.log(req.body);
+  });
 
   if (
     name.value == "" ||
@@ -44,16 +47,16 @@ function create_id() {
       alert("비밀번호를 확인해주세요");
     } else {
       alert("회원가입이 완료되었습니다");
+      /*
       app.post("/add", function (req, res) {
-        res.send("전송완료");
-
         db.collection("landing").insertOne(
           { name: name, id: id, pw: pw, pw_check: pw_check },
           function (err, result) {
             console.log("저장 완료");
           }
         );
-      });
+        res.send("전송완료");
+      });*/
       /*// mongoose사용 시 사용 가능 db로 데이터 보내기
       const movieSchema = new mongoose.Schema({
         name: String,
