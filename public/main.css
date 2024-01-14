@@ -51,111 +51,107 @@ button {
   align-items: center;
   padding: 15px 30px;
   background-color: #000000de;
-  position: sticky;
+  
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-}
 
+  width: 100%;
+  height: 130px;
+}
 body {
   transition: all 0.3s ease-in-out;
   line-height: 1.5;
-  background-color: #18191a;
-  color: #fff;
 }
 
-body.dark {
-  background-color: #fff;
-  color: #000000;
+body.darkmode {
+  background-color: black;
+  color: #fff;
 }
 
 /* -----토글 부분-----*/
 
-.light {
-  height: 10px;
-}
-.toggle {
-  margin-left: 88%;
-
-  position: relative;
+.btn {
+  margin-bottom: 60px;
   height: 40px;
   width: 100px;
-  border-radius: 100px;
   background-color: #fff;
-  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.548);
+  border-radius: 10em;
+  padding: 0 0.5em;
+
+  box-shadow: inset 0 -4px 30px rgba(0, 0, 0, 0.2),
+    inset 0 -4px 4px rgba(207, 207, 207, 0.336);
+
+  position: fixed;
+  margin-left: 90%;
+  
+
+  display: flex;
+  align-items: center;
+
   cursor: pointer;
 }
 
-.toggle::before {
-  content: "";
-  position: absolute;
+.btn__indicator {
+  background-color: #fff;
   height: 36px;
   width: 36px;
-  background-color: #000000;
+  /* 
+  width: 7em;
+  height: 7em; */
   border-radius: 50%;
-  top: 50%;
-  left: 11px;
-  transform: translateY(-50%);
-  border-radius: 100px;
-  box-shadow: 10px 5px 20px rgba(206, 192, 0, 0.548);
-  transition: all 0.3s ease-in-out;
-}
-.toggle.active::before {
-  background-color: rgb(164, 228, 255);
-  left: calc(100% - 1px - 50px);
-}
 
-.toggle.active {
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.548);
-}
-
-/* 해와 달 */
-
-.sun {
   position: absolute;
-  font-size: 28px;
-  left: 18px;
-  top: 2px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
 
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out;
+  transition: transform 0.3s ease;
 }
 
-.moon {
-  position: absolute;
-  font-size: 26px;
-  left: 55px;
-  top: 2.5px;
+.btn__icon-container {
+  width: 100%;
+  height: 100%;
 
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out;
-}
-
-.toggle.active .sun {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.toggle.active .moon {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* .logo {
   display: flex;
   justify-content: center;
-  font-size: 40px;
+  align-items: center;
+}
+
+.btn__icon {
+  color: #ffde59;
+  font-size: 28px;
+}
+.btn__icon.animated {
+  animation: spin 0.5s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.darkmode .btn {
+  box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.3),
+    inset 8px 0 8px rgba(0, 0, 0, 0.3), inset 0 -4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.darkmode .btn__indicator {
+  transform: translateX(3em);
+  background-color: #2b2b2b;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+.darkmode .btn__icon {
   color: #fff;
-} */
+}
 
 /* -----nav 바 (로고, 검색, 프로필) 부분-----*/
 .logo {
-  display: flex;
-  justify-content: center;
-  font-size: 68px;
-  color: #fff;
+  /* display: flex;
+  justify-content: center; */
+  font-size: 78px;
+  margin-left: 38%;
+  position: fixed;
 }
 
 .logo a {
@@ -163,10 +159,13 @@ body.dark {
 }
 
 .search-container {
-  display: flex;
-  padding: 0.5rem;
+  /* display: flex; */
+  padding: 0.3rem;
   border-radius: 50px;
   background-color: #fff;
+
+  margin-left: 80%;
+  margin-top: 50px;
 }
 .search-container form {
   position: relative;
@@ -238,15 +237,18 @@ body.dark {
 }
 
 .user-container {
-  display: flex;
-  padding: 0.5rem;
+  /* display: flex; */
+  padding: 0.3rem;
   border-radius: 50px;
   background-color: #fff;
+  /* margin-left: 10px; */
+  margin-top: 55px;
 }
+
 .user-icon {
   position: relative;
-  width: 38px;
-  height: 38px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   border: none;
   background-color: black;
@@ -261,13 +263,13 @@ body.dark {
 
 .cate_menu {
   background-color: transparent;
-  width: 130px;
+  width: 135px;
   padding-top: 20px;
   padding-bottom: 20px;
 
   position: absolute;
-  right: 130px;
-  top: 70px;
+  left: 43px;
+  top: 95px;
   z-index: 1001;
 
   display: grid;
@@ -306,11 +308,12 @@ body.dark {
 .cate {
   border: 1px solid transparent;
   background-color: transparent;
-  font-size: 30px;
+  font-size: 35px;
   color: #fff;
 
   position: absolute;
-  right: 120px;
+  left: 30px;
+  bottom: 30px;
 }
 
 .cate:hover {
@@ -318,10 +321,29 @@ body.dark {
 }
 
 /* 다크 모드 시 */
-body.dark .lc:hover {
+.darkmode .lc:hover {
   transform: translate(-20px, -40px) scale(1.3, 1.3);
-  box-shadow: 100px 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 90px 5px 60px rgba(200, 200, 200, 0.5);
   transition: 0.5s;
+}
+
+.darkmode .mainbutton button,
+.darkmode .slidebutton button,
+.darkmode .close {
+  color: white;
+}
+
+.darkmode .exBtn,
+.darkmode .searchadd {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+}
+
+.darkmode .exBtn:hover,
+.darkmode .searchadd:hover {
+  background-color: black;
+  color: white;
 }
 
 /* body.dark.nextbutton button {
@@ -432,7 +454,7 @@ body.dark.searchadd:hover {
 .exBtn {
   background-color: black;
   color: white;
-  border: 1px solid blanchedalmond;
+  border: 1px solid black;
   border-radius: 50px;
   font-size: 18px;
 
@@ -492,7 +514,7 @@ body.dark.searchadd:hover {
   font-size: 35px;
   background-color: transparent;
   border: 1px solid transparent;
-  color: white;
+  color: black;
 
   width: 50px;
   height: 50px;
@@ -558,7 +580,7 @@ body.dark.searchadd:hover {
   margin-left: 30px;
   background-color: transparent;
   border: transparent;
-  color: white;
+  color: black;
 }
 
 .slidebutton button {
@@ -569,7 +591,7 @@ body.dark.searchadd:hover {
   font-size: 30px;
   width: 100px;
   height: 100px;
-  color: white;
+  color: black;
 }
 
 .slidebutton {
@@ -611,7 +633,7 @@ body.dark.searchadd:hover {
 
 .lc:hover {
   transform: translate(-20px, -40px) scale(1.3, 1.3);
-  box-shadow: 90px 5px 60px rgba(200, 200, 200, 0.5);
+  box-shadow: 100px 10px 30px rgba(0, 0, 0, 0.5);
   transition: 0.5s;
 }
 
