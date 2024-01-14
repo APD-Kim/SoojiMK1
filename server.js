@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 const { MongoClient, Timestamp, ObjectId } = require("mongodb");
 let db;
 let reviewDb;
+let landingdb;
 const url =
   "mongodb+srv://admin:black12456@cluster0.2samj3t.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(url);
@@ -21,6 +22,7 @@ new MongoClient(url)
   .connect()
   .then((client) => {
     console.log("DB연결성공");
+    landingdb = client.db("forum").collection("landing");
     reviewDb = client.db("forum").collection("review");
     app.listen(5555, () => {
       console.log("http://localhost:5555 에서 서버 실행중");
@@ -113,4 +115,17 @@ app.delete("/review/delete", async (req, res) => {
     console.log(e);
     res.status(500).send(e);
   }
+});
+app.get("/join", async (req, res) => {
+  res.render("join.ejs");
+});
+app.post("/add", async (req, res) => {
+  console.log(req.body);
+  let land = landingdb.insertOne({
+    name: req.body.name,
+    id: req.body.id,
+    pw: req.body.pw,
+    pw_check: req.body.pw_check,
+  });
+  console.log(land);
 });
