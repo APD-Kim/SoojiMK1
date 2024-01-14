@@ -86,6 +86,7 @@ function fetchMoreMovies() {
           movie.poster_path,
           movie.id,
           movie.title,
+          movie.original_title,
           movie.overview,
           movie.vote_average
         );
@@ -122,7 +123,7 @@ function fetchMoreMovies() {
 
 document.addEventListener("DOMContentLoaded", fetchMoreMovies);
 
-function createMovieCard(index, poster_path, id, title, overview, vote) {
+function createMovieCard(index, poster_path, id, title, otitle, overview, vote) {
   const movieContainer = (() => {
     const el = document.createElement("div");
     el.className = "lc";
@@ -149,6 +150,7 @@ function createMovieCard(index, poster_path, id, title, overview, vote) {
     modal.style.display = "block";
     document.querySelector(".modal-image").innerHTML = `
     <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
+    <button class="heart"><i class="fa-solid fa-heart"></i></button>
     <button class="trailer"> 예고편 보기 </button>
     <span class="close-button2 close" id="detail-close">&times;</span>`;
     // document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
@@ -158,10 +160,10 @@ function createMovieCard(index, poster_path, id, title, overview, vote) {
     // <p>🤍</p>`;
     document.querySelector(".modal-content").innerHTML = `
     <h2 class="movietitle">${title}</h2>
+    <p class="movieotitle">(${otitle})</p>
     <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
     <hr>
-    <p class="movieoverview">${overview}</p>
-    <button class="heart"><i class="fa-solid fa-heart"></i></button>`;
+    <p class="movieoverview">${overview}</p>`;
   }
   imageElement.addEventListener("click", handlePosterClick);
   return movieContainer;
