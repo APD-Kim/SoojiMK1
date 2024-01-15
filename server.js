@@ -19,7 +19,7 @@ const { MongoClient, Timestamp, ObjectId } = require("mongodb");
 let db;
 let reviewDb;
 const url =
-  "mongodb+srv://admin:lol940620@cluster0.2samj3t.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://admin:black12456@cluster0.2samj3t.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(url);
 new MongoClient(url)
   .connect()
