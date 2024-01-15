@@ -86,6 +86,7 @@ function fetchMoreMovies() {
           movie.poster_path,
           movie.id,
           movie.title,
+          movie.original_title,
           movie.overview,
           movie.vote_average
         );
@@ -122,7 +123,7 @@ function fetchMoreMovies() {
 
 document.addEventListener("DOMContentLoaded", fetchMoreMovies);
 
-function createMovieCard(index, poster_path, id, title, overview, vote) {
+function createMovieCard(index, poster_path, id, title, otitle, overview, vote) {
   const movieContainer = (() => {
     const el = document.createElement("div");
     el.className = "lc";
@@ -149,13 +150,20 @@ function createMovieCard(index, poster_path, id, title, overview, vote) {
     modal.style.display = "block";
     document.querySelector(".modal-image").innerHTML = `
     <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
+    <button class="heart"><i class="fa-solid fa-heart"></i></button>
     <button class="trailer"> 예고편 보기 </button>
     <span class="close-button2 close" id="detail-close">&times;</span>`;
-    document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
-    <p>⭐️ 평점 : ${vote}
-    <h3>줄거리</h3>
-    <p>${overview}</p>
-    <p>🤍</p>`;
+    // document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
+    // <p>⭐️ 평점 : ${vote}
+    // <h3>줄거리</h3>
+    // <p>${overview}</p>
+    // <p>🤍</p>`;
+    document.querySelector(".modal-content").innerHTML = `
+    <h2 class="movietitle">${title}</h2>
+    <p class="movieotitle">(${otitle})</p>
+    <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
+    <hr>
+    <p class="movieoverview">${overview}</p>`;
   }
   imageElement.addEventListener("click", handlePosterClick);
   return movieContainer;
@@ -185,16 +193,35 @@ function mainMovie(liveId, url) {
 }
 
 // document.addEventListener("DOMContentLoaded", function () {
+//   const url2 =
+//     "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
+//   const url3 =
+//     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=28";
+//   const url4 =
+//     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=10749";
+//   const url5 =
+//     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=14";
+//   const url6 =
+//     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=16";
+
+//   mainMovie("live2", url2);
+//   mainMovie("live3", url3);
+//   mainMovie("live4", url4);
+//   mainMovie("live5", url5);
+//   mainMovie("live6", url6);
+// });
+
+// document.addEventListener("DOMContentLoaded", function () {
 const url2 =
   "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
 const url3 =
-  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=28";
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=28";
 const url4 =
-  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=10749";
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=10749";
 const url5 =
-  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=14";
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=14";
 const url6 =
-  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc&with_genres=16";
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=16";
 
 mainMovie("live2", url2);
 mainMovie("live3", url3);
