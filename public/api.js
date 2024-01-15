@@ -115,79 +115,28 @@ function fetchMoreMovies() {
     });
 }
 
-// document.addEventListener("DOMContentLoaded", fetchMoreMovies);
-
-// function createMovieCard(
-//   index,
-//   poster_path,
-//   id,
-//   title,
-//   otitle,
-//   overview,
-//   vote
-// ) {
-//   const movieContainer = (() => {
-//     const el = document.createElement("div");
-//     el.className = "lc";
-
-//     return el;
-//   })();
-//   const imageElement = (() => {
-//     const el = document.createElement("img");
-//     el.className = "poster";
-//     el.src = "https://image.tmdb.org/t/p/original" + poster_path;
-//     el.setAttribute("data-index", index);
-//     return el;
-//   })();
-//   const rankElement = (() => {
-//     const el = document.createElement("h1");
-//     el.className = "rank";
-//     el.textContent = index + 1;
-//     return el;
-//   })();
-
-//   movieContainer.appendChild(imageElement);
-//   movieContainer.appendChild(rankElement);
-
-//   function handlePosterClick() {
-//     const modal = document.getElementById("myModal");
-//     modal.style.display = "block";
-//     document.querySelector(".modal-image").innerHTML = `
-//     <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
-//     <button class="heart"><i class="fa-solid fa-heart"></i></button>
-//     <button class="trailer"> 예고편 보기 </button>
-//     <span class="close-button2 close" id="detail-close">&times;</span>`;
-//     // document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
-//     // <p>⭐️ 평점 : ${vote}
-//     // <h3>줄거리</h3>
-//     // <p>${overview}</p>
-//     // <p>🤍</p>`;
-//     document.querySelector(".modal-content").innerHTML = `
-//     <h2 class="movietitle">${title}</h2>
-//     <p class="movieotitle">(${otitle})</p>
-//     <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
-//     <hr>
-//     <p class="movieoverview">${overview}</p>`;
-//   };
-
-  
-//   imageElement.addEventListener("click", handlePosterClick);
-//   return movieContainer;
-// }
-
-////////////////////////////
 document.addEventListener("DOMContentLoaded", fetchMoreMovies);
 
-function createMovieCard(index, poster_path, id, title, otitle, overview, vote) {
+function createMovieCard(
+  index,
+  poster_path,
+  id,
+  title,
+  otitle,
+  overview,
+  vote
+) {
   const movieContainer = (() => {
     const el = document.createElement("div");
     el.className = "lc";
+
     return el;
   })();
   const imageElement = (() => {
     const el = document.createElement("img");
     el.className = "poster";
     el.src = "https://image.tmdb.org/t/p/original" + poster_path;
+    el.setAttribute("data-index", index);
     return el;
   })();
   const rankElement = (() => {
@@ -200,40 +149,28 @@ function createMovieCard(index, poster_path, id, title, otitle, overview, vote) 
   movieContainer.appendChild(imageElement);
   movieContainer.appendChild(rankElement);
 
-  async function handlePosterClick() {
-    try {
-      const youtubeApiKey = 'AIzaSyDpuO0gd_mqWCqqHsaLwRWHMhCrZ4xLKfU';
-      const youtubeApiUrl = 'https://www.googleapis.com/youtube/v3/search';
+  function handlePosterClick() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    document.querySelector(".modal-image").innerHTML = `
+    <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
+    <button class="heart"><i class="fa-solid fa-heart"></i></button>
+    <button class="trailer"> 예고편 보기 </button>
+    <span class="close-button2 close" id="detail-close">&times;</span>`;
+    // document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
+    // <p>⭐️ 평점 : ${vote}
+    // <h3>줄거리</h3>
+    // <p>${overview}</p>
+    // <p>🤍</p>`;
+    document.querySelector(".modal-content").innerHTML = `
+    <h2 class="movietitle">${title}</h2>
+    <p class="movieotitle">(${otitle})</p>
+    <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
+    <hr>
+    <p class="movieoverview">${overview}</p>`;
+  };
 
-      // YouTube API 호출
-      const response = await fetch(`${youtubeApiUrl}?part=snippet&q=${otitle} trailer&type=video&key=${youtubeApiKey}`);
-      const data = await response.json();
-
-      // 메인 예고편 ID 추출
-      const videoId = data.items[0].id.videoId;
-
-      // 모달 창 열기
-      const modal = document.getElementById("myModal");
-      modal.style.display = "block";
-      
-      // 메인 예고편 삽입
-      document.querySelector(".modal-image").innerHTML = `
-        <iframe style="width: 100%; height: 600px;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-        <button class="heart"><i class="fa-solid fa-heart"></i></button>
-        <span class="close-button2 close" id="detail-close">&times;</span>`;
-      
-      // 영화 정보 삽입
-      document.querySelector(".modal-content").innerHTML = `
-        <h2 class="movietitle">${title}</h2>
-        <p class="movieotitle">(${otitle})</p>
-        <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
-        <hr>
-        <p class="movieoverview">${overview}</p>`;
-    } catch (error) {
-      console.error('예외 발생:', error.message);
-    }
-  }
-
+  
   imageElement.addEventListener("click", handlePosterClick);
   return movieContainer;
 }
