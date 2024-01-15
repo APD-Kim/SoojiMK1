@@ -6,8 +6,8 @@
 
 .searchResult {
   width: 60%;
-  margin: 80px auto;
-  border: 1px solid blue;
+  margin: 180px auto 80px;
+  border: 1px solid black;
   text-align: center;
 }
 

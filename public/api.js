@@ -240,10 +240,11 @@ mainMovie("live6", url6);
 
 document.addEventListener("DOMContentLoaded", function () {
   let genreButtons = document.querySelectorAll(".cate_menu button");
+  const cateMenu = document.getElementById("cate_menu");
 
   genreButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      // lcContainer.innerHTML = "";
+      catecard.innerHTML = "";
       document.querySelector(".Container").style.display = "none";
       let genreId = getGenreId(button.id);
       fetchMoviesByGenre(genreId);
@@ -288,7 +289,6 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((err) => {
         console.error(err);
-        functionSelection = 3;
       });
   }
 });

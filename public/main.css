@@ -727,7 +727,7 @@ body.dark.searchadd:hover {
 }
 
 .catecard {
-  width: 94%;
+  width: 100%;
 
   display: grid;
   grid-template-columns: repeat(4, 350px);
@@ -737,8 +737,6 @@ body.dark.searchadd:hover {
   grid-row-gap: 200px;
 
   padding: 50px;
-
-  border: 3px solid black;
 
   overflow: auto;
 }
