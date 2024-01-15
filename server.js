@@ -8,6 +8,7 @@ app.use(express.static(__dirname + "/img"));
 app.use(express.static(__dirname + "/landing"));
 // app.set("views", path.join(__dirname + "/views"));
 app.use(express.static(__dirname + "/feature_ranking"));
+app.use(express.static(__dirname + "/search"));
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
