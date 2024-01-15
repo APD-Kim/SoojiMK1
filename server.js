@@ -121,11 +121,37 @@ app.get("/join", async (req, res) => {
 });
 app.post("/add", async (req, res) => {
   console.log(req.body);
-  let land = landingdb.insertOne({
+  let land = await landingdb.insertOne({
     name: req.body.name,
     id: req.body.id,
     pw: req.body.pw,
     pw_check: req.body.pw_check,
   });
   console.log(land);
+});
+// const insertedID = land.insertedID;
+// const user = await usersCollection.findOne({ _id: insertedID });
+// if (!user) {
+//   return res.status(404).json({ error: "사용자를 찾을 수 없습니다" });
+// }
+// res.status(200).json({ user });
+app.post("/findPassword", async (req, res) => {
+  const { name, id } = req.body;
+  const user = await usersCollection.findOne({ name, id });
+  if (!user) {
+    return res.status(404).json({ error: "사용자를 찾을 수 없습니다" });
+  }
+  res.status(200).json({ id, name, pw: user.pw });
+});
+app.use(
+  express({
+    secret: "your-secrect-key",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.post("/login", async (req, res) => {
+  const user = { id: "사용자 ID", name: "사용자 이름" };
+  req.express.user = user;
+  res.status(200).json({ success: true });
 });

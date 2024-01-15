@@ -5,24 +5,49 @@
     <title>로그인 페이지</title>
   </head>
   <body>
-    <main>
-    <script src="landing.js"></script>
-    <form class="loginpage">
-      <div class="login">뭘로하지? 로그인</div>
-      <div class="input id">
-        <label><input id="id" class="id" type="text" placeholder="아이디를 입력해주세요" /></label>
-      </div>
-      <div class="inputpassword">
-        <label><input id="pw" class="pw" type="password" placeholder="비밀번호를 입력해주세요" /></label>
-      </div>
-      <div>
-        <input type="button" class="loginbtn" value="로그인" onclick="login();" />
-      </div>
-      <div class="btn">
-        <input type="button" value="회원가입" onclick="location.href='join.ejs'" ></button>
-        <input type="button" value="비밀번호 찾기" onclick="location.href='pwcheck.ejs'" />
-      </div>
-    </form>
+    <main class="login-container">
+      <script src="landing.js"></script>
+      <form class="loginpage">
+        <div class="login">뭘로하지? 로그인</div>
+        <div class="input id">
+          <label
+            ><input
+              id="id"
+              class="id"
+              type="text"
+              placeholder="아이디를 입력해주세요"
+          /></label>
+        </div>
+        <div class="input password">
+          <label
+            ><input
+              id="pw"
+              class="pw"
+              type="password"
+              placeholder="비밀번호를 입력해주세요"
+          /></label>
+        </div>
+        <div class="btn-container">
+          <input
+            type="button"
+            class="loginbtn"
+            value="로그인"
+            onclick="login();"
+          />
+          <div class="additional-buttons">
+            <input
+              type="button"
+              value="회원가입"
+              onclick="location.href='join.ejs'"
+            />
+            <input
+              type="button"
+              value="비밀번호 찾기"
+              onclick="location.href='pwcheck.ejs'"
+            />
+          </div>
+        </div>
+      </form>
     </main>
   </body>
 </html>
