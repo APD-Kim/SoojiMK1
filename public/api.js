@@ -150,24 +150,24 @@ function createMovieCard(
   movieContainer.appendChild(rankElement);
 
   function handlePosterClick() {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "block";
-    document.querySelector(".modal-image").innerHTML = `
-    <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
-    <button class="heart"><i class="fa-solid fa-heart"></i></button>
-    <button class="trailer"> 예고편 보기 </button>
-    <span class="close-button2 close" id="detail-close">&times;</span>`;
+    // const modal = document.getElementById("myModal");
+    // modal.style.display = "block";
+    // document.querySelector(".modal-image").innerHTML = `
+    // <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
+    // <button class="heart"><i class="fa-solid fa-heart"></i></button>
+    // <button class="trailer"> 예고편 보기 </button>
+    // <span class="close-button2 close" id="detail-close">&times;</span>`;
     // document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
     // <p>⭐️ 평점 : ${vote}
     // <h3>줄거리</h3>
     // <p>${overview}</p>
     // <p>🤍</p>`;
-    document.querySelector(".modal-content").innerHTML = `
-    <h2 class="movietitle">${title}</h2>
-    <p class="movieotitle">(${otitle})</p>
-    <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
-    <hr>
-    <p class="movieoverview">${overview}</p>`;
+    // document.querySelector(".modal-content").innerHTML = `
+    // <h2 class="movietitle">${title}</h2>
+    // <p class="movieotitle">(${otitle})</p>
+    // <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
+    // <hr>
+    // <p class="movieoverview">${overview}</p>`;
   };
 
   
@@ -199,26 +199,6 @@ function mainMovie(liveId, url) {
     });
 }
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   const url2 =
-//     "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
-//   const url3 =
-//     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=28";
-//   const url4 =
-//     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=10749";
-//   const url5 =
-//     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=14";
-//   const url6 =
-//     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=16";
-
-//   mainMovie("live2", url2);
-//   mainMovie("live3", url3);
-//   mainMovie("live4", url4);
-//   mainMovie("live5", url5);
-//   mainMovie("live6", url6);
-// });
-
-// document.addEventListener("DOMContentLoaded", function () {
 const url2 =
   "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
 const url3 =
@@ -235,7 +215,7 @@ mainMovie("live3", url3);
 mainMovie("live4", url4);
 mainMovie("live5", url5);
 mainMovie("live6", url6);
-// });
+
 
 //-----카테고리별 카드 생성-----
 
@@ -357,12 +337,14 @@ const movieContent = async (e, category) => {
       
       const youtubeApiKey = "AIzaSyDpuO0gd_mqWCqqHsaLwRWHMhCrZ4xLKfU";
       const youtubeApiUrl = "https://www.googleapis.com/youtube/v3/search";
+
       const dataIndex = e.target.dataset.index;
       const response = await fetch(`http://localhost:5555/detail/${category}`);
       console.log(response);
       const movieData = await response.json();
       console.log(movieData);
       const clickedDataIndex = movieData[dataIndex];
+
       const youtubeResponse = await fetch(
         `${youtubeApiUrl}?part=snippet&q=${clickedDataIndex.original_title} trailer&type=video&key=${youtubeApiKey}`
       );
@@ -375,11 +357,8 @@ const movieContent = async (e, category) => {
       const modal = document.getElementById("myModal");
       modal.style.display = "block";
       document.querySelector(".modal-image").innerHTML = `
-    <img src="https://image.tmdb.org/t/p/original${clickedDataIndex.poster_path}" alt="${clickedDataIndex.title}">
-    <iframe style="width: 100%; height: 600px;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-
+    <iframe style="width: 100%; height: 700px;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
     <button class="heart"><i class="fa-solid fa-heart"></i></button>
-    <button class="trailer"> 예고편 보기 </button>
     <span class="close-button2 close" id="detail-close">&times;</span>`;
       document.querySelector(".modal-content").innerHTML = `
     <h2 class="movietitle">${clickedDataIndex.title}</h2>

@@ -80,7 +80,7 @@
   margin-top: 0%;
   margin-bottom: 0%;
   /* 가운데 정렬 */
-  border-top: 0.3px solid rgb(255, 255, 255);
+  /* border-top: 0.3px solid rgb(255, 255, 255); */
   /* border-bottom: 1px solid rgb(255, 255, 255); */
 }
 
@@ -122,7 +122,6 @@
   font-family: 'KOTRA_BOLD-Bold';
 
   text-align: center;
-  /* margin-top: 15%; */
   margin-bottom: 3%;
   font-size: 43px;
 }
