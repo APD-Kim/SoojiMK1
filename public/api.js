@@ -46,7 +46,7 @@ for (let i = 1; i <= divCount; i++) {
 
       moreInfoDiv.querySelector(".title").textContent = movieData.title;
       moreInfoDiv.querySelector(".original_title").textContent =
-        movieData.original_title;
+        `( ${movieData.original_title} )`;
       moreInfoDiv.querySelector(
         ".release_date"
       ).textContent = `개봉 날짜: ${movieData.release_date}`;
@@ -335,7 +335,7 @@ const movieContent = async (e, category) => {
   if (e.target.matches("IMG")) {
     try {
       
-      const youtubeApiKey = "AIzaSyDpuO0gd_mqWCqqHsaLwRWHMhCrZ4xLKfU";
+      const youtubeApiKey = "AIzaSyANmiTJIsdFSS5jClB1u3cJLPfgkdRlThM";
       const youtubeApiUrl = "https://www.googleapis.com/youtube/v3/search";
 
       const dataIndex = e.target.dataset.index;
@@ -346,7 +346,7 @@ const movieContent = async (e, category) => {
       const clickedDataIndex = movieData[dataIndex];
 
       const youtubeResponse = await fetch(
-        `${youtubeApiUrl}?part=snippet&q=${clickedDataIndex.original_title} trailer&type=video&key=${youtubeApiKey}`
+        `${youtubeApiUrl}?part=snippet&q=${clickedDataIndex.original_title} main trailer&type=video&key=${youtubeApiKey}`
       );
       const data = await youtubeResponse.json();
       const videoId = data.items[0].id.videoId;
@@ -383,3 +383,39 @@ for (let i = 0; i < urls.length; i++) {
 
 export default options;
 export { fetchMoreMovies };
+
+
+
+//////////////////
+
+async function getVideoIdBySearch(query) {
+  try {
+    const response = await fetch(`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}&sp=EgIQAQ%253D%253D`);
+    const text = await response.text();
+
+    // Extract video_id from the first search result
+    const match = text.match(/"videoId":"([^"]+)"/);
+    if (match && match[1]) {
+      const videoId = match[1];
+      return videoId;
+    } else {
+      console.error("Video ID not found in search results");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error during YouTube search:", error.message);
+    return null;
+  }
+}
+
+// Example usage:
+const query = "The Dark Knight main trailer";
+getVideoIdBySearch(query)
+  .then(videoId => {
+    if (videoId) {
+      console.log("Found video ID:", videoId);
+      // Now you can use the videoId in your application
+    } else {
+      console.log("Unable to find video ID");
+    }
+  });
