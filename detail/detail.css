@@ -80,7 +80,7 @@
   margin-top: 0%;
   margin-bottom: 0%;
   /* 가운데 정렬 */
-  border-top: 0.3px solid rgb(255, 255, 255);
+  /* border-top: 0.3px solid rgb(255, 255, 255); */
   /* border-bottom: 1px solid rgb(255, 255, 255); */
 }
 
@@ -98,21 +98,22 @@
 }
 
 .modal-image {
-  width: 28%;
+  width: 100%;
 }
 
-.modal-image img {
+/* .modal-image img {
   max-width: 100%;
   height: auto;
-}
+} */
 
 .modal-content {
-  width: 50%;
-  margin-left: 120px;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
   /* flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start; */
-  align-items: center;
+  /* align-items: center; */
 }
 
 /* ---------------------------------- */
@@ -121,27 +122,28 @@
   font-family: 'KOTRA_BOLD-Bold';
 
   text-align: center;
-  margin-top: 15%;
-  margin-bottom: 5%;
-  font-size: 48px;
+  margin-bottom: 3%;
+  font-size: 43px;
 }
 
 .movieotitle {
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
+  margin-bottom: 3%;
 }
 
 .movierating {
   text-align-last: right;
   font-weight: bold;
-  margin-bottom: 10%;
+  margin-bottom: 3%;
   font-size: 20px;
 }
 
 .movieoverview {
   margin-top: 5%;
+  margin-bottom: 5%;
   font-size: 20px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .heart {
