@@ -151,10 +151,11 @@ app.post("/review/edit", async (req, res) => {
       { _id: new ObjectId(`${id}`) },
       { $set: { name: name, text: text, rating: rating } }
     );
+    // console.log(result);
+    res.json(req.body);
     if (result.modifiedCount === 0) {
       throw Error("업데이트 실패: 문서가 안보임");
     }
-    // res.redirect("/");
   } catch (e) {
     console.log(e);
     res.status(500).send(e);
