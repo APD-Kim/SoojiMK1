@@ -50,9 +50,8 @@ for (let i = 1; i <= divCount; i++) {
       moreInfoDiv.querySelector(
         ".release_date"
       ).textContent = `개봉 날짜: ${movieData.release_date}`;
-      moreInfoDiv.querySelector(".vote_average").textContent = `⭐️ 평점: ${
-        Math.round(movieData.vote_average * 10) / 10
-      }`;
+      moreInfoDiv.querySelector(".vote_average").textContent = `⭐️ 평점: ${Math.round(movieData.vote_average * 10) / 10
+        }`;
       moreInfoDiv.querySelector(".overview").textContent = movieData.overview;
 
       const mainDiv = document.getElementById(mainDivId);
@@ -74,9 +73,8 @@ let currentPage = 0;
 let functionSelection = 0;
 
 function fetchMoreMovies() {
-  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${
-    currentPage + 1
-  }`;
+  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${currentPage + 1
+    }`;
   fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
@@ -234,15 +232,18 @@ mainMovie("live6", url6);
 
 document.addEventListener("DOMContentLoaded", function () {
   let genreButtons = document.querySelectorAll(".cate_menu button");
+  const cateMenu = document.getElementById("cate_menu");
 
   genreButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      lcContainer.innerHTML = "";
+      catecard.innerHTML = "";
+      document.querySelector(".Container").style.display = "none";
       let genreId = getGenreId(button.id);
       fetchMoviesByGenre(genreId);
       cateMenu.classList.remove("active");
     });
   });
+
 
   function getGenreId(buttonId) {
     switch (buttonId) {
@@ -270,19 +271,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchMoviesByGenre(genreId) {
-    const discoverUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${
-      currentPage + 1
-    }&sort_by=popularity.desc&with_genres=${genreId}`;
+    const discoverUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${currentPage + 1
+      }&sort_by=popularity.desc&with_genres=${genreId}`;
 
     fetch(discoverUrl, options)
       .then((response) => response.json())
       .then((data) => {
         renderMovies(data.results);
-        any = 3;
       })
       .catch((err) => {
         console.error(err);
-        functionSelection = 3;
       });
   }
 });
@@ -305,9 +303,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function handleSearch() {
   const query = searchInput.value;
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=${
-    currentPage + 1
-  }&query=${encodeURIComponent(query.toLowerCase())}`;
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=${currentPage + 1
+    }&query=${encodeURIComponent(query.toLowerCase())}`;
 
   fetch(searchUrl, options)
     .then((response) => response.json())
@@ -327,8 +324,8 @@ function handleSearch() {
 
 function renderMovies(movies) {
   movies.forEach((movie, index) => {
-    const movieCard = createMovieCard(index + 1, movie.poster_path, movie.id);
-    lcContainer.appendChild(movieCard);
+    const movieCard = createMovieCard(index, movie.poster_path, movie.id);
+    document.getElementById("catecard").appendChild(movieCard);
   });
   currentPage += 1;
 }

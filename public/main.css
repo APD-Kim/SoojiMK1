@@ -343,16 +343,25 @@ body.darkmode {
 }
 
 .darkmode .exBtn,
-.darkmode .searchadd {
+.darkmode .searchadd{
   background-color: white;
   color: black;
   border: 1px solid white;
 }
 
 .darkmode .exBtn:hover,
-.darkmode .searchadd:hover {
+.darkmode .searchadd:hover{
   background-color: black;
   color: white;
+}
+
+.darkmode .nextbutton button {
+  color: white;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.darkmode .nextbutton button:hover {
+  color: black;
 }
 
 /* body.dark.nextbutton button {
@@ -681,8 +690,8 @@ body.dark.searchadd:hover {
   padding: 5px;
   font-size: 35px;
   z-index: 1;
-  color: black;
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  color: black(255, 255, 255);
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .nextbutton button:hover {
@@ -715,6 +724,21 @@ body.dark.searchadd:hover {
   background-color: white;
   color: black;
   transition: 0.5s;
+}
+
+.catecard {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 350px);
+  grid-auto-rows: auto;
+
+  grid-column-gap: 80px;
+  grid-row-gap: 200px;
+
+  padding: 50px;
+
+  overflow: auto;
 }
 
 /* -----footer 영역------ */
