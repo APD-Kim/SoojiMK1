@@ -10,6 +10,7 @@ const editClose = document.querySelector("#edit-modal");
 const reviewBox = document.querySelectorAll(".review-box");
 const ratingStars = [...document.getElementsByClassName("rating__star")];
 const ratingResult = document.querySelector(".rating__result");
+const editModalBox = document.querySelector("#edit-modal");
 console.log(`hi`);
 
 // console.log(poster);
@@ -102,6 +103,9 @@ function executeRating(stars, result) {
 // function printRatingResult(result, num = 0) {
 //   result.textContent = `${num}/5`;
 // }
+function deleteReview(event) {
+  console.log(event.target);
+}
 
 executeRating(ratingStars, ratingResult);
 
@@ -152,8 +156,8 @@ accessBtn.addEventListener("submit", async (e) => {
       <p>${name.value}</p>
       <p>평점 : ${starCount + 1}</p>
       <p>${text.value}</p>
-      <button class="edit-review" onclick="editReview(e)">수정</button>
-      <button class="delete-review">삭제</button>
+      <button class="edit-review">수정</button>
+      <button class="delete-review" onclick="deleteReview(event)">삭제</button>
       <input class="edit-password" type="password" data-password="${
         password.value
       }">
@@ -170,7 +174,7 @@ accessBtn.addEventListener("submit", async (e) => {
 //   const passwordInput = e.target.querySelector(".edit-review");
 //   console.log(passwordInput);
 //   const passwordValue = passwordInput.getAttribute("data-password");
-//   const editModalBox = document.querySelector("#edit-modal");
+
 //   const dataId = e.target.querySelector(".id");
 //   const id = dataId.getAttribute("data-id");
 //   if (passwordInput.value === passwordValue) {
@@ -217,44 +221,111 @@ accessBtn.addEventListener("submit", async (e) => {
 //   // 비밀번호가 맞으면 추가 로직 수행...
 // };
 
-const editReview = (e) => {
+const UpdateReview = (data) => {
+  const id = data.id;
+  const reviewElement = document.querySelector(
+    `[data-id="${id}"]`
+  ).parentElement;
+  console.log(reviewElement);
+  console.log(reviewElement.children[0]);
+  reviewElement.children[0].textContent = `${data.name}`;
+  reviewElement.children[1].textContent = `평점 : ${data.rating}`;
+  reviewElement.children[2].textContent = `${data.text}`;
+  reviewElement.children[5].value = "";
+};
+
+document.querySelector(".modal-box3").addEventListener("click", async (e) => {
+  console.log(e.target);
   const password = e.target.parentElement.children[5];
+
   //이벤트 타겟의 부모의 자식요소
   const passwordValue = password.value;
   console.log(password.dataset.password);
   console.log(passwordValue);
   console.log(password.dataset.password === passwordValue);
-};
 
-document.querySelector(".review-box").addEventListener("click", editReview);
-
-deleteReviewButtons.forEach((button, index) => {
-  //해당 버튼의 id값을 찾아서
-  button.addEventListener("click", async function (e) {
-    const dataId = document.querySelectorAll(".id")[index];
-    const id = dataId.getAttribute("data-id");
-    const passwordInput = document.querySelectorAll(".edit-password")[index];
-    const passwordValue = passwordInput.getAttribute("data-password");
-    console.log(id);
-    if (passwordInput.value === passwordValue) {
-      fetch(`/review/delete?id=${id}`, {
-        method: "DELETE",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          if (data._id === id) {
-            reviewBox[index].style.display = "none";
-          }
+  if (
+    password.dataset.password === passwordValue &&
+    e.target.matches(".edit-review")
+  ) {
+    const id = e.target.parentElement.children[6].dataset.id;
+    editModalBox.style.display = "flex";
+    await fetch(`/search/review?id=${id}`)
+      .then((response) => response.json()) // 자바스크립트가 사용할수 있는 오브젝트로 바꿈
+      .then((data) => {
+        if (Object.keys(data).length === 0)
+          throw Error("데이터가 비어있습니다.");
+        console.log(`성공결과입니다`, data);
+        document.querySelector("#edit-name").value = data.name;
+        document.querySelector("#edit-text").value = data.text;
+        document.querySelector("#edit-rating").value = data.rating;
+      });
+    document.querySelector("#edit-btn").addEventListener("click", async (e) => {
+      e.preventDefault();
+      let userInfo = {
+        name: document.querySelector("#edit-name").value,
+        text: document.querySelector("#edit-text").value,
+        rating: document.querySelector("#edit-rating").value,
+        id: id,
+      };
+      if (userInfo.rating > 5) {
+        alert("5점까지만 줄수있어요");
+      } else {
+        console.log(userInfo);
+        await fetch("/review/edit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
         })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    } else {
-      alert(`비밀번호가 틀렸습니다.`);
-    }
-  });
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            editModalBox.style.display = "none";
+            UpdateReview(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    });
+  } else if (
+    password.dataset.password !== passwordValue &&
+    e.target.matches(".edit-review")
+  ) {
+    alert("비번틀림");
+  }
 });
+
+// deleteReviewButtons.forEach((button, index) => {
+//   //해당 버튼의 id값을 찾아서
+//   button.addEventListener("click", async function (e) {
+//     const dataId = document.querySelectorAll(".id")[index];
+//     const id = dataId.getAttribute("data-id");
+//     const passwordInput = document.querySelectorAll(".edit-password")[index];
+//     const passwordValue = passwordInput.getAttribute("data-password");
+//     console.log(id);
+//     if (passwordInput.value === passwordValue) {
+//       fetch(`/review/delete?id=${id}`, {
+//         method: "DELETE",
+//       })
+//         .then((response) => response.json())
+//         .then((data) => {
+//           console.log(data);
+//           if (data._id === id) {
+//             reviewBox[index].style.display = "none";
+//           }
+//         })
+//         .catch((error) => {
+//           console.error("Error:", error);
+//         });
+//     } else {
+//       alert(`비밀번호가 틀렸습니다.`);
+//     }
+//   });
+// });
+
 // const deleteReview = (e) => {
 //   console.log(e.target);
 //   if (e.target.className === "delete-review") {
