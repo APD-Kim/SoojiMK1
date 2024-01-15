@@ -228,38 +228,38 @@ editReviewButtons.forEach((button, index) => {
 //1.수정하기 버튼을 눌렀을 때 id값과 이름,평점,내용을 서버로 post요청을 한다.
 //2.서버는 id값과 일치하는 데이터의 이름, 평점,내용의 밸류를 수정한다.
 
-// deleteReviewButtons.forEach((button, index) => {
-//   //해당 버튼의 id값을 찾아서
-//   button.addEventListener("click", async function (e) {
-//     const dataId = document.querySelectorAll(".id")[index];
-//     const id = dataId.getAttribute("data-id");
-//     const passwordInput = document.querySelectorAll(".edit-password")[index];
-//     const passwordValue = passwordInput.getAttribute("data-password");
-//     console.log(id);
-//     if (passwordInput.value === passwordValue) {
-//       fetch(`/review/delete?id=${id}`, {
-//         method: "DELETE",
-//       })
-//         .then((response) => response.json())
-//         .then((data) => {
-//           console.log(data);
-//           if (data._id === id) {
-//             reviewBox[index].style.display = "none";
-//           }
-//         })
-//         .catch((error) => {
-//           console.error("Error:", error);
-//         });
-//     } else {
-//       alert(`비밀번호가 틀렸습니다.`);
-//     }
-//   });
-// });
-const deleteReview = (e) => {
-  console.log(e.target);
-  if (e.target.className === "delete-review") {
-    console.log(`hi`);
-  }
-};
+deleteReviewButtons.forEach((button, index) => {
+  //해당 버튼의 id값을 찾아서
+  button.addEventListener("click", async function (e) {
+    const dataId = document.querySelectorAll(".id")[index];
+    const id = dataId.getAttribute("data-id");
+    const passwordInput = document.querySelectorAll(".edit-password")[index];
+    const passwordValue = passwordInput.getAttribute("data-password");
+    console.log(id);
+    if (passwordInput.value === passwordValue) {
+      fetch(`/review/delete?id=${id}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data._id === id) {
+            reviewBox[index].style.display = "none";
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } else {
+      alert(`비밀번호가 틀렸습니다.`);
+    }
+  });
+});
+// const deleteReview = (e) => {
+//   console.log(e.target);
+//   if (e.target.className === "delete-review") {
+//     console.log(`hi`);
+//   }
+// };
 
 document.querySelector(".modal-box3").addEventListener("click", deleteReview);

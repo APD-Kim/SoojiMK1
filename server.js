@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const fs = require("fs");
+const { MongoClient, Timestamp, ObjectId } = require("mongodb");
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/detail"));
 app.use(express.static(__dirname + "/img"));
@@ -11,7 +12,26 @@ app.use(express.static(__dirname + "/feature_ranking"));
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const { MongoClient, Timestamp, ObjectId } = require("mongodb");
+
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YTIwODRmMTRjN2Q4YmVkYTUwN2Y2Y2JhOTAzY2JjMCIsInN1YiI6IjY1OTdhMzIyZDdhNzBhMTIyZTZhNWJlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ac_Stz4Gal2NG_KroSZ8NaNIQ-Y8pO-t-kF2A03CjLs",
+  },
+};
+
+const axiosGet = async (url) => {
+  try {
+    const data = await fetch(url, options);
+    const response = await data.json();
+    return response.results;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 let db;
 let reviewDb;
 let landingdb;
@@ -31,9 +51,33 @@ new MongoClient(url)
   .catch((err) => {
     console.log(err);
   });
+app.get("/detail/:category", async (req, res) => {
+  const category = req.params.category;
+  const categoryUrls = {
+    popular: "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
+    korea:
+      "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko",
+    action:
+      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=28",
+    romance:
+      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=10749",
+    fantasy:
+      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=14",
+    animation:
+      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=revenue.desc&with_genres=16",
+  };
+  console.log(category);
+  const categoryUrl = categoryUrls[category];
+  const korea = await axiosGet(categoryUrl);
+  res.json(korea);
+});
+
 app.get("/", async (req, res) => {
   let result = await reviewDb.find().toArray();
-  res.render("layout", { title: "EJS 템플릿 엔진 적용하기", review: result });
+  res.render("layout", {
+    title: "EJS 템플릿 엔진 적용하기",
+    review: result,
+  });
 });
 app.post("/review", async (req, res) => {
   let body = req.body;
@@ -128,4 +172,13 @@ app.post("/add", async (req, res) => {
     pw_check: req.body.pw_check,
   });
   console.log(land);
+});
+
+app.get("/movie", async (req, res) => {
+  try {
+    console.log(`hi`);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("server Error :" + error.message);
+  }
 });
