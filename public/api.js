@@ -50,8 +50,9 @@ for (let i = 1; i <= divCount; i++) {
       moreInfoDiv.querySelector(
         ".release_date"
       ).textContent = `개봉 날짜: ${movieData.release_date}`;
-      moreInfoDiv.querySelector(".vote_average").textContent = `⭐️ 평점: ${Math.round(movieData.vote_average * 10) / 10
-        }`;
+      moreInfoDiv.querySelector(".vote_average").textContent = `⭐️ 평점: ${
+        Math.round(movieData.vote_average * 10) / 10
+      }`;
       moreInfoDiv.querySelector(".overview").textContent = movieData.overview;
 
       const mainDiv = document.getElementById(mainDivId);
@@ -73,8 +74,9 @@ let currentPage = 0;
 let functionSelection = 0;
 
 function fetchMoreMovies() {
-  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${currentPage + 1
-    }`;
+  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${
+    currentPage + 1
+  }`;
   fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
@@ -96,10 +98,6 @@ function fetchMoreMovies() {
         )
           .then((creditsResponse) => creditsResponse.json())
           .then((creditsData) => {
-            const credits = console.log(
-              `영화 ID ${movie.id}의 크레딧:`,
-              creditsData
-            );
             // 여기에서 크레딧 데이터를 사용한 추가적인 로직 구현
           })
           .catch((err) =>
@@ -121,16 +119,26 @@ function fetchMoreMovies() {
 
 document.addEventListener("DOMContentLoaded", fetchMoreMovies);
 
-function createMovieCard(index, poster_path, id, title, otitle, overview, vote) {
+function createMovieCard(
+  index,
+  poster_path,
+  id,
+  title,
+  otitle,
+  overview,
+  vote
+) {
   const movieContainer = (() => {
     const el = document.createElement("div");
     el.className = "lc";
+
     return el;
   })();
   const imageElement = (() => {
     const el = document.createElement("img");
     el.className = "poster";
     el.src = "https://image.tmdb.org/t/p/original" + poster_path;
+    el.setAttribute("data-index", index);
     return el;
   })();
   const rankElement = (() => {
@@ -163,7 +171,7 @@ function createMovieCard(index, poster_path, id, title, otitle, overview, vote) 
     <hr>
     <p class="movieoverview">${overview}</p>`;
   }
-  imageElement.addEventListener("click", handlePosterClick);
+  // imageElement.addEventListener("click", handlePosterClick);
   return movieContainer;
 }
 
@@ -244,7 +252,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
   function getGenreId(buttonId) {
     switch (buttonId) {
       case "drama":
@@ -271,8 +278,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchMoviesByGenre(genreId) {
-    const discoverUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${currentPage + 1
-      }&sort_by=popularity.desc&with_genres=${genreId}`;
+    const discoverUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${
+      currentPage + 1
+    }&sort_by=popularity.desc&with_genres=${genreId}`;
 
     fetch(discoverUrl, options)
       .then((response) => response.json())
@@ -303,8 +311,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function handleSearch() {
   const query = searchInput.value;
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=${currentPage + 1
-    }&query=${encodeURIComponent(query.toLowerCase())}`;
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=${
+    currentPage + 1
+  }&query=${encodeURIComponent(query.toLowerCase())}`;
 
   fetch(searchUrl, options)
     .then((response) => response.json())
@@ -341,6 +350,46 @@ const movieadd = document.getElementById("movieadd");
 //     fetchMoviesByGenre(selectedGenreId);
 //   }
 // });
+const movieContent = async (e, category) => {
+  console.log(e.target);
+  if (e.target.matches("IMG")) {
+    try {
+      const dataIndex = e.target.dataset.index;
+      const response = await fetch(`http://localhost:5555/detail/${category}`);
+      console.log(response);
+      const movieData = await response.json();
+      console.log(movieData);
+      const clickedDataIndex = movieData[dataIndex];
+      console.log(clickedDataIndex);
+      console.log(clickedDataIndex.title);
+      const modal = document.getElementById("myModal");
+      modal.style.display = "block";
+      document.querySelector(".modal-image").innerHTML = `
+    <img src="https://image.tmdb.org/t/p/original${clickedDataIndex.poster_path}" alt="${clickedDataIndex.title}">
+    <button class="heart"><i class="fa-solid fa-heart"></i></button>
+    <button class="trailer"> 예고편 보기 </button>
+    <span class="close-button2 close" id="detail-close">&times;</span>`;
+      document.querySelector(".modal-content").innerHTML = `
+    <h2 class="movietitle">${clickedDataIndex.title}</h2>
+    <p class="movieotitle">(${clickedDataIndex.original_title})</p>
+    <p class="movierating">⭐️ 평점: ${
+      Math.round(clickedDataIndex.vote_average * 10) / 10
+    }</p>
+    <hr>
+    <p class="movieoverview">${clickedDataIndex.overview}</p>`;
+    } catch (e) {
+      console.error("에러남 :" + e.messsage);
+    }
+  }
+};
+
+const urls = ["popular", "korea", "action", "romance", "fantasy", "animation"];
+
+for (let i = 0; i < urls.length; i++) {
+  document
+    .querySelector(`#live${1 + i}`)
+    .addEventListener("click", (e) => movieContent(e, urls[i]));
+}
 
 export default options;
 export { fetchMoreMovies };
