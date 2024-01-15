@@ -103,9 +103,7 @@ function executeRating(stars, result) {
 // function printRatingResult(result, num = 0) {
 //   result.textContent = `${num}/5`;
 // }
-function deleteReview(event) {
-  console.log(event.target);
-}
+
 
 executeRating(ratingStars, ratingResult);
 
@@ -325,12 +323,5 @@ document.querySelector(".modal-box3").addEventListener("click", async (e) => {
 //     }
 //   });
 // });
-
-// const deleteReview = (e) => {
-//   console.log(e.target);
-//   if (e.target.className === "delete-review") {
-//     console.log(`hi`);
-//   }
-// };
 
 // document.querySelector(".modal-box3").addEventListener("click", deleteReview);

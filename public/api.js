@@ -151,26 +151,6 @@ function createMovieCard(
   movieContainer.appendChild(imageElement);
   movieContainer.appendChild(rankElement);
 
-  function handlePosterClick() {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "block";
-    document.querySelector(".modal-image").innerHTML = `
-    <img src="https://image.tmdb.org/t/p/original${poster_path}" alt="${title}">
-    <button class="heart"><i class="fa-solid fa-heart"></i></button>
-    <button class="trailer"> 예고편 보기 </button>
-    <span class="close-button2 close" id="detail-close">&times;</span>`;
-    // document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
-    // <p>⭐️ 평점 : ${vote}
-    // <h3>줄거리</h3>
-    // <p>${overview}</p>
-    // <p>🤍</p>`;
-    document.querySelector(".modal-content").innerHTML = `
-    <h2 class="movietitle">${title}</h2>
-    <p class="movieotitle">(${otitle})</p>
-    <p class="movierating">⭐️ 평점: ${Math.round(vote * 10) / 10}</p>
-    <hr>
-    <p class="movieoverview">${overview}</p>`;
-  }
   // imageElement.addEventListener("click", handlePosterClick);
   return movieContainer;
 }
@@ -355,8 +335,8 @@ const movieContent = async (e, category) => {
   console.log(e.target);
   if (e.target.matches("IMG")) {
     try {
-      
       const youtubeApiKey = "AIzaSyDpuO0gd_mqWCqqHsaLwRWHMhCrZ4xLKfU";
+      const youtubeApiKey1 = "AIzaSyANmiTJIsdFSS5jClB1u3cJLPfgkdRlThM";
       const youtubeApiUrl = "https://www.googleapis.com/youtube/v3/search";
       const dataIndex = e.target.dataset.index;
       const response = await fetch(`http://localhost:5555/detail/${category}`);
@@ -364,9 +344,12 @@ const movieContent = async (e, category) => {
       const movieData = await response.json();
       console.log(movieData);
       const clickedDataIndex = movieData[dataIndex];
+      console.log(new Date().getTime());
+      // setTimeout(() => {}, 500);
       const youtubeResponse = await fetch(
-        `${youtubeApiUrl}?part=snippet&q=${clickedDataIndex.original_title} trailer&type=video&key=${youtubeApiKey}`
+        `${youtubeApiUrl}?part=snippet&q=${clickedDataIndex.original_title} trailer&type=video&key=${youtubeApiKey1}`
       );
+      console.log(new Date().getTime());
       const data = await youtubeResponse.json();
       const videoId = data.items[0].id.videoId;
 
