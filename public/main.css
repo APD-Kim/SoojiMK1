@@ -726,6 +726,23 @@ body.dark.searchadd:hover {
   transition: 0.5s;
 }
 
+.catecard {
+  width: 94%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 350px);
+  grid-auto-rows: auto;
+
+  grid-column-gap: 80px;
+  grid-row-gap: 200px;
+
+  padding: 50px;
+
+  border: 3px solid black;
+
+  overflow: auto;
+}
+
 /* -----footer 영역------ */
 
 * {
