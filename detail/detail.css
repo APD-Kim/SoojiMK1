@@ -323,3 +323,13 @@
   margin: 0 auto;
   margin-bottom: 10px;
 }
+
+.trailerWatch {
+  display: none;
+  width: 80%;
+  height: 700px;
+  background-color: aquamarine;
+  position: fixed;
+  margin-left: 10%;
+  margin-top: 5%;
+}
