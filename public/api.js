@@ -350,22 +350,35 @@ const movieadd = document.getElementById("movieadd");
 //     fetchMoviesByGenre(selectedGenreId);
 //   }
 // });
+
 const movieContent = async (e, category) => {
   console.log(e.target);
   if (e.target.matches("IMG")) {
     try {
+      
+      const youtubeApiKey = "AIzaSyDpuO0gd_mqWCqqHsaLwRWHMhCrZ4xLKfU";
+      const youtubeApiUrl = "https://www.googleapis.com/youtube/v3/search";
       const dataIndex = e.target.dataset.index;
       const response = await fetch(`http://localhost:5555/detail/${category}`);
       console.log(response);
       const movieData = await response.json();
       console.log(movieData);
       const clickedDataIndex = movieData[dataIndex];
+      const youtubeResponse = await fetch(
+        `${youtubeApiUrl}?part=snippet&q=${clickedDataIndex.original_title} trailer&type=video&key=${youtubeApiKey}`
+      );
+      const data = await youtubeResponse.json();
+      const videoId = data.items[0].id.videoId;
+
       console.log(clickedDataIndex);
       console.log(clickedDataIndex.title);
+      console.log(clickedDataIndex.original_title);
       const modal = document.getElementById("myModal");
       modal.style.display = "block";
       document.querySelector(".modal-image").innerHTML = `
     <img src="https://image.tmdb.org/t/p/original${clickedDataIndex.poster_path}" alt="${clickedDataIndex.title}">
+    <iframe style="width: 100%; height: 600px;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+
     <button class="heart"><i class="fa-solid fa-heart"></i></button>
     <button class="trailer"> 예고편 보기 </button>
     <span class="close-button2 close" id="detail-close">&times;</span>`;
