@@ -3,7 +3,7 @@ import { fetchMoreMovies } from "./api.js";
 
 // 모달 요소 가져오기
 const modal = document.getElementById("myModal");
-const editReviewButtons = document.querySelectorAll(".edit-review");
+const editReviewButtons = document.querySelector(".edit-review");
 const deleteReviewButtons = document.querySelectorAll(".delete-review");
 const closeButton = document.querySelector(".modal .close-button");
 const editClose = document.querySelector("#edit-modal");
@@ -21,7 +21,6 @@ console.log(`hi`);
 
 // 닫기 버튼을 클릭하면 모달 닫기
 document.body.addEventListener("click", function (e) {
-  console.log(e.target);
   if (e.target.id === "detail-close") {
     modal.style.display = "none";
   }
@@ -42,8 +41,6 @@ window.addEventListener("click", function (event) {
 
 //live -> lc -> poster
 
-console.log(options);
-console.log(fetchMoreMovies);
 console.log(document.querySelector(".rating").innerHTML.length);
 
 const changeStarGold = (e) => {
@@ -155,7 +152,7 @@ accessBtn.addEventListener("submit", async (e) => {
       <p>${name.value}</p>
       <p>평점 : ${starCount + 1}</p>
       <p>${text.value}</p>
-      <button class="edit-review">수정</button>
+      <button class="edit-review" onclick="editReview(e)">수정</button>
       <button class="delete-review">삭제</button>
       <input class="edit-password" type="password" data-password="${
         password.value
@@ -168,65 +165,68 @@ accessBtn.addEventListener("submit", async (e) => {
       console.error("Error:", error);
     });
 });
+// const editReview = (e) => {
+//   console.log(e.target);
+//   const passwordInput = e.target.querySelector(".edit-review");
+//   console.log(passwordInput);
+//   const passwordValue = passwordInput.getAttribute("data-password");
+//   const editModalBox = document.querySelector("#edit-modal");
+//   const dataId = e.target.querySelector(".id");
+//   const id = dataId.getAttribute("data-id");
+//   if (passwordInput.value === passwordValue) {
+//     editModalBox.style.display = "flex";
+//     fetch(`/search/review?id=${id}`)
+//       .then((response) => response.json()) // 자바스크립트가 사용할수 있는 오브젝트로 바꿈
+//       .then((data) => {
+//         if (Object.keys(data).length === 0)
+//           throw Error("데이터가 비어있습니다.");
+//         console.log(`성공결과입니다`, data);
+//         document.querySelector("#edit-name").value = data.name;
+//         document.querySelector("#edit-text").value = data.text;
+//         document.querySelector("#edit-rating").value = data.rating;
+//         //수정하기 버튼을 눌렀을 때 db의 내용을 수정해주는 이벤트리스너
+//         document.querySelector("#edit-btn").addEventListener("click", (e) => {
+//           e.preventDefault();
+//           let userInfo = {
+//             name: document.querySelector("#edit-name").value,
+//             text: document.querySelector("#edit-text").value,
+//             rating: document.querySelector("#edit-rating").value,
+//             id: id,
+//           };
+//           console.log(userInfo);
+//           fetch("/review/edit", {
+//             method: "POST",
+//             headers: {
+//               "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify(userInfo),
+//           })
+//             .then((response) => response.json())
+//             .then((data) => {
+//               console.log(data);
+//             })
+//             .catch((error) => {
+//               console.error("Error:", error);
+//             });
+//         });
+//       })
+//       .catch((e) => console.log("여기 캐치입니다", e));
+//   } else {
+//     alert("비밀번호가 틀렸습니다.");
+//   }
+//   // 비밀번호가 맞으면 추가 로직 수행...
+// };
 
-// if(document.querySelector('#edit-password').value ===)
+const editReview = (e) => {
+  const password = e.target.parentElement.children[5];
+  //이벤트 타겟의 부모의 자식요소
+  const passwordValue = password.value;
+  console.log(password.dataset.password);
+  console.log(passwordValue);
+  console.log(password.dataset.password === passwordValue);
+};
 
-editReviewButtons.forEach((button, index) => {
-  //비밀번호가 일치하면 수정 모달창을 띄워주는 이벤트리스너
-  button.addEventListener("click", async function (e) {
-    const passwordInput = document.querySelectorAll(".edit-password")[index];
-    const passwordValue = passwordInput.getAttribute("data-password");
-    const editModalBox = document.querySelector("#edit-modal");
-    const dataId = document.querySelectorAll(".id")[index];
-    const id = dataId.getAttribute("data-id");
-    if (passwordInput.value === passwordValue) {
-      editModalBox.style.display = "flex";
-      fetch(`/search/review?id=${id}`)
-        .then((response) => response.json()) // 자바스크립트가 사용할수 있는 오브젝트로 바꿈
-        .then((data) => {
-          if (Object.keys(data).length === 0)
-            throw Error("데이터가 비어있습니다.");
-          console.log(`성공결과입니다`, data);
-          document.querySelector("#edit-name").value = data.name;
-          document.querySelector("#edit-text").value = data.text;
-          document.querySelector("#edit-rating").value = data.rating;
-          //수정하기 버튼을 눌렀을 때 db의 내용을 수정해주는 이벤트리스너
-          document.querySelector("#edit-btn").addEventListener("click", (e) => {
-            e.preventDefault();
-            let userInfo = {
-              name: document.querySelector("#edit-name").value,
-              text: document.querySelector("#edit-text").value,
-              rating: document.querySelector("#edit-rating").value,
-              id: id,
-            };
-            console.log(userInfo);
-            fetch("/review/edit", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(userInfo),
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data);
-              })
-              .catch((error) => {
-                console.error("Error:", error);
-              });
-          });
-        })
-        .catch((e) => console.log("여기 캐치입니다", e));
-    } else {
-      alert("비밀번호가 틀렸습니다.");
-    }
-    // 비밀번호가 맞으면 추가 로직 수행...
-  });
-});
-
-//수정하기 버튼을 눌렀을 때 최초 내용이 수정버튼을 눌렀던 내용인지 아는방법
-//1.수정하기 버튼을 눌렀을 때 id값과 이름,평점,내용을 서버로 post요청을 한다.
-//2.서버는 id값과 일치하는 데이터의 이름, 평점,내용의 밸류를 수정한다.
+document.querySelector(".review-box").addEventListener("click", editReview);
 
 deleteReviewButtons.forEach((button, index) => {
   //해당 버튼의 id값을 찾아서
@@ -262,4 +262,4 @@ deleteReviewButtons.forEach((button, index) => {
 //   }
 // };
 
-document.querySelector(".modal-box3").addEventListener("click", deleteReview);
+// document.querySelector(".modal-box3").addEventListener("click", deleteReview);

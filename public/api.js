@@ -50,8 +50,9 @@ for (let i = 1; i <= divCount; i++) {
       moreInfoDiv.querySelector(
         ".release_date"
       ).textContent = `개봉 날짜: ${movieData.release_date}`;
-      moreInfoDiv.querySelector(".vote_average").textContent = `⭐️ 평점: ${Math.round(movieData.vote_average * 10) / 10
-        }`;
+      moreInfoDiv.querySelector(".vote_average").textContent = `⭐️ 평점: ${
+        Math.round(movieData.vote_average * 10) / 10
+      }`;
       moreInfoDiv.querySelector(".overview").textContent = movieData.overview;
 
       const mainDiv = document.getElementById(mainDivId);
@@ -73,8 +74,9 @@ let currentPage = 0;
 let functionSelection = 0;
 
 function fetchMoreMovies() {
-  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${currentPage + 1
-    }`;
+  const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=${
+    currentPage + 1
+  }`;
   fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
@@ -96,10 +98,6 @@ function fetchMoreMovies() {
         )
           .then((creditsResponse) => creditsResponse.json())
           .then((creditsData) => {
-            const credits = console.log(
-              `영화 ID ${movie.id}의 크레딧:`,
-              creditsData
-            );
             // 여기에서 크레딧 데이터를 사용한 추가적인 로직 구현
           })
           .catch((err) =>
@@ -253,7 +251,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
   function getGenreId(buttonId) {
     switch (buttonId) {
       case "drama":
@@ -280,8 +277,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchMoviesByGenre(genreId) {
-    const discoverUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${currentPage + 1
-      }&sort_by=popularity.desc&with_genres=${genreId}`;
+    const discoverUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=${
+      currentPage + 1
+    }&sort_by=popularity.desc&with_genres=${genreId}`;
 
     fetch(discoverUrl, options)
       .then((response) => response.json())
@@ -313,8 +311,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function handleSearch() {
   const query = searchInput.value;
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=${currentPage + 1
-    }&query=${encodeURIComponent(query.toLowerCase())}`;
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=${
+    currentPage + 1
+  }&query=${encodeURIComponent(query.toLowerCase())}`;
 
   fetch(searchUrl, options)
     .then((response) => response.json())
@@ -370,11 +369,6 @@ const movieContent = async (e, category) => {
     <button class="heart"><i class="fa-solid fa-heart"></i></button>
     <button class="trailer"> 예고편 보기 </button>
     <span class="close-button2 close" id="detail-close">&times;</span>`;
-      // document.querySelector(".modal-content").innerHTML = `<h2>${title}</h2>
-      // <p>⭐️ 평점 : ${vote}
-      // <h3>줄거리</h3>
-      // <p>${overview}</p>
-      // <p>🤍</p>`;
       document.querySelector(".modal-content").innerHTML = `
     <h2 class="movietitle">${clickedDataIndex.title}</h2>
     <p class="movieotitle">(${clickedDataIndex.original_title})</p>
