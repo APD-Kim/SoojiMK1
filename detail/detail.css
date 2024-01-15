@@ -98,21 +98,22 @@
 }
 
 .modal-image {
-  width: 28%;
+  width: 100%;
 }
 
-.modal-image img {
+/* .modal-image img {
   max-width: 100%;
   height: auto;
-}
+} */
 
 .modal-content {
-  width: 50%;
-  margin-left: 120px;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
   /* flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start; */
-  align-items: center;
+  /* align-items: center; */
 }
 
 /* ---------------------------------- */
@@ -121,27 +122,29 @@
   font-family: 'KOTRA_BOLD-Bold';
 
   text-align: center;
-  margin-top: 15%;
-  margin-bottom: 5%;
-  font-size: 48px;
+  /* margin-top: 15%; */
+  margin-bottom: 3%;
+  font-size: 43px;
 }
 
 .movieotitle {
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
+  margin-bottom: 3%;
 }
 
 .movierating {
   text-align-last: right;
   font-weight: bold;
-  margin-bottom: 10%;
+  margin-bottom: 3%;
   font-size: 20px;
 }
 
 .movieoverview {
   margin-top: 5%;
+  margin-bottom: 5%;
   font-size: 20px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .heart {
@@ -322,14 +325,4 @@
   width: 50%;
   margin: 0 auto;
   margin-bottom: 10px;
-}
-
-.trailerWatch {
-  display: none;
-  width: 80%;
-  height: 700px;
-  background-color: aquamarine;
-  position: fixed;
-  margin-left: 10%;
-  margin-top: 5%;
 }
