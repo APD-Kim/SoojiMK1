@@ -70,6 +70,7 @@ app.get("/detail/:category", async (req, res) => {
   console.log(category);
   const categoryUrl = categoryUrls[category];
   const korea = await axiosGet(categoryUrl);
+  console.log(korea);
   res.json(korea);
 });
 

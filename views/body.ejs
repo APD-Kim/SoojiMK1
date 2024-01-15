@@ -57,7 +57,7 @@
           <p>
             <%= review[i].text %>
           </p>
-          <button class="edit-review">수정</button>
+          <button class="edit-review" onclick="deleteReview(event)">수정</button>
           <button class="delete-review">삭제</button>
           <input class="edit-password" type="password" data-password="<%= review[i].password %>">
           <input class="id" type="hidden" data-id=<%=review[i]._id %>>
