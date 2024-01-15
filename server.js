@@ -45,6 +45,7 @@ new MongoClient(url)
     console.log("DB연결성공");
     landingdb = client.db("forum").collection("landing");
     reviewDb = client.db("forum").collection("review");
+    usersCollection = client.db("forum").collection("users");
     app.listen(5555, () => {
       console.log("http://localhost:5555 에서 서버 실행중");
     });
@@ -196,11 +197,16 @@ app.post("/add", async (req, res) => {
 // res.status(200).json({ user });
 app.post("/findPassword", async (req, res) => {
   const { name, id } = req.body;
-  const user = await usersCollection.findOne({ name, id });
-  if (!user) {
-    return res.status(404).json({ error: "사용자를 찾을 수 없습니다" });
+  try {
+    const user = await usersCollection.findOne({ name, id });
+    if (!user) {
+      return res.status(404).json({ error: "사용자를 찾을 수 없습니다" });
+    }
+    res.status(200).json({ id, name, pw: user.pw });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "서버 오류" });
   }
-  res.status(200).json({ id, name, pw: user.pw });
 });
 app.use(
   express({

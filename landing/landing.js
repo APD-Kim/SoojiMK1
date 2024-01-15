@@ -8,20 +8,21 @@ function login() {
     alert("아이디와 비밀번호를 확인해주세요.");
     id.focus();
   } else {
-    const userInfo = { id: "사용자 ID", name: "사용자 이름" };
+    const userInfo = { id: id.value, pw: pw.value };
     localStorage.setItem("user", JSON.stringify(userInfo));
     //location.href = "login.ejs";
   }
 }
-//로그아웃 아직 따로 구현 안함
+//로그아웃 버튼을 만들어서 클릭시 logout함수로 가게 만들면 사용가능
 function logout() {
   localStorage.removeItem("user");
+  alert("로그아웃되었습니다");
   //location.href = "login.ejs";
 }
 document.addEventListener("DOMContentLoaded", function () {
   const userInfoString = localStorage.getItem("user");
   if (userInfoString) {
-    const userInfo = json.parse(userInfoString);
+    const userInfo = JSON.parse(userInfoString);
     console.log("로그인 상태:", userInfo);
   } else {
     console.log("로그인 상태 아님");
