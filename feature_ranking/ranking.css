@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.heading {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid black;
+}
+
+.movies {
+  margin: 180px auto 80px;
+}
+
+.movies-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  gap: 3rem 1rem;
+  margin-top: 2rem;
+}
+
+.movies-container2 {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  gap: 3rem 1rem;
+  margin-top: 2rem;
+}
+
+.box .box-img {
+  width: 100%;
+  height: 270px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.box .box-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h3 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.div {
+  margin-bottom: 10px;
+  font-size: 13px;
+  text-align: end;
+}
+
+.moreContainer {
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.more {
+  margin: 40px auto;
+  padding: 20px 50px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.more:hover {
+  background-color: #dad8d8;
+}
