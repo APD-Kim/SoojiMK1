@@ -57,7 +57,7 @@
           <p>
             <%= review[i].text %>
           </p>
-          <button class="edit-review">수정</button>
+          <button class="edit-review" onclick="deleteReview(event)">수정</button>
           <button class="delete-review">삭제</button>
           <input class="edit-password" type="password" data-password="<%= review[i].password %>">
           <input class="id" type="hidden" data-id=<%=review[i]._id %>>
@@ -316,5 +316,6 @@
 </main>
 <script src="main.js" type="module"></script>
 <script src="detail.js" type="module"></script>
+<script src="ranking.js" type="module"></script>
 <script type="module" src="api.js"></script>
 <script src="https://kit.fontawesome.com/8bc9e38e4e.js" crossorigin="anonymous"></script>

@@ -11,7 +11,7 @@
   <body>
     <%- include('header.ejs') %>
     <div class="searchResult">
-      <p>'<%= searchTerm %>'로 검색한 결과입니다.</p>
+      <p>'<span class="searchWord"></span>'로 검색한 결과입니다.</p>
     </div>
     <div class="filterBtn">
       <button>최신순</button>
@@ -19,56 +19,7 @@
       <button>평점순</button>
     </div>
     <div class="movies" id="movies">
-      <div class="movies-container">
-        <div class="box">
-          <div class="box-img">
-            <img src="/js.png" alt="node.js" />
-          </div>
-          <h3>제목</h3>
-          <span>줄거리</span>
-          <div>투표</div>
-        </div>
-        <div class="box">
-          <div class="box-img">
-            <img src="/js.png" alt="node.js" />
-          </div>
-          <h3>제목</h3>
-          <span>줄거리</span>
-          <div>투표</div>
-        </div>
-        <div class="box">
-          <div class="box-img">
-            <img src="/js.png" alt="node.js" />
-          </div>
-          <h3>제목</h3>
-          <span>줄거리</span>
-          <div>투표</div>
-        </div>
-        <div class="box">
-          <div class="box-img">
-            <img src="/js.png" alt="js" />
-          </div>
-          <h3>제목</h3>
-          <span>줄거리</span>
-          <div>투표</div>
-        </div>
-        <div class="box">
-          <div class="box-img">
-            <img src="/js.png" alt="node.js" />
-          </div>
-          <h3>제목</h3>
-          <span>줄거리</span>
-          <div>투표</div>
-        </div>
-        <div class="box">
-          <div class="box-img">
-            <img src="/js.png" alt="node.js" />
-          </div>
-          <h3>제목</h3>
-          <span>줄거리</span>
-          <div>투표</div>
-        </div>
-      </div>
+      <div class="movies-container"></div>
     </div>
     <%- include('footer.ejs') %>
   </body>
