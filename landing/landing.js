@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+const { json } = require("stream/consumers");
 
 function login() {
   const id = document.querySelector("#id");
@@ -7,9 +8,26 @@ function login() {
     alert("아이디와 비밀번호를 확인해주세요.");
     id.focus();
   } else {
-    location.href = "login.ejs"; //로그인 성공시 main으로 보내기
+    const userInfo = { id: id.value, pw: pw.value };
+    localStorage.setItem("user", JSON.stringify(userInfo));
+    //location.href = "login.ejs";
   }
 }
+//로그아웃 버튼을 만들어서 클릭시 logout함수로 가게 만들면 사용가능
+function logout() {
+  localStorage.removeItem("user");
+  alert("로그아웃되었습니다");
+  //location.href = "login.ejs";
+}
+document.addEventListener("DOMContentLoaded", function () {
+  const userInfoString = localStorage.getItem("user");
+  if (userInfoString) {
+    const userInfo = JSON.parse(userInfoString);
+    console.log("로그인 상태:", userInfo);
+  } else {
+    console.log("로그인 상태 아님");
+  }
+});
 function back() {
   history.go(-1);
 }
@@ -75,17 +93,30 @@ function create_id() {
     }
   }
 }
-function pw_find() {
+async function pw_find() {
   const name = document.querySelector("#name");
   const id = document.querySelector("#id");
   const pw = document.querySelector("#pw");
+  const response = await fetch("/findPassword", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, id }),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    console.log(data);
+  } else {
+    console.error(data.error);
+  }
 
   if (name.value == "" || id.value == "") {
     alert("이름과 id를 확인해주세요");
     name.focus();
   } else {
     alert(`비밀번호는 ${pw}입니다`);
-    location.herf = "login.ejs";
+    location.href = "login.ejs";
   }
 }
 function checkname() {
