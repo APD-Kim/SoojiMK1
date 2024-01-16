@@ -45,6 +45,7 @@ const url5 = `https://api.themoviedb.org/3/discover/movie?include_adult=false&in
 const url6 = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&sort_by=revenue.desc&with_genres=16&page=${currentPage}`;
 
 const buttonNumber = localStorage.getItem('buttonNumber');
+console.log(buttonNumber)
 
 window.onload = function () {
   if (buttonNumber === '1') {
