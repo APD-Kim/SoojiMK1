@@ -98,9 +98,6 @@ app.post("/review", async (req, res) => {
     res.status(500).send("server error");
   }
 });
-// app.get("/search", (req, res) => {
-//   res.render("search.ejs");
-// });
 app.get("/search", (req, res) => {
   const searchTerm = req.query.q;
   res.render("search.ejs", { searchTerm });
@@ -108,21 +105,9 @@ app.get("/search", (req, res) => {
 app.get("/signup", (req, res) => {
   res.render("signup.ejs");
 });
-// app.get("/ranking", (req, res) => {
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       accept: "application/json",
-//       Authorization:
-//         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YTIwODRmMTRjN2Q4YmVkYTUwN2Y2Y2JhOTAzY2JjMCIsInN1YiI6IjY1OTdhMzIyZDdhNzBhMTIyZTZhNWJlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ac_Stz4Gal2NG_KroSZ8NaNIQ-Y8pO-t-kF2A03CjLs",
-//     },
-//   };
-//   const url = `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1`;
-//   fetch(url, options)
-//     .then((response) => response.json())
-//     .then(({ results }) => res.render("ranking.ejs", { results: results }))
-//     .catch((err) => console.error(err));
-// });
+app.get("/ranking", (req, res) => {
+  res.render("ranking.ejs");
+});
 app.get("/login", (req, res) => {
   res.render("login.ejs");
 });
