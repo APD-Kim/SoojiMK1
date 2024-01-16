@@ -7,17 +7,17 @@
   </head>
   <body>
     <ul>
-      <li class="li" onclick="clickEvent(event)">1</li>
-      <li class="li" onclick="clickEvent(event)">2</li>
+      <li class="li">1</li>
     </ul>
   </body>
   <script>
-    document.querySelector(
-      "ul"
-    ).innerHTML += `<li class="li" onclick="clickEvent(event)">3</li>`;
-    function clickEvent(event) {
-      console.log(event);
-      alert("click");
-    }
+    document.querySelectorAll(".li").forEach((li) => {
+      li.addEventListener("click", () => {
+        alert("click");
+      });
+    });
+    document
+      .querySelector("ul")
+      .insertAdjacentHTML("beforeend", `<li class="li">1</li>`);
   </script>
 </html>

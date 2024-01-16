@@ -197,3 +197,13 @@ app.get("/movie", async (req, res) => {
     res.status(500).send("server Error :" + error.message);
   }
 });
+
+app.post("/review/delete", async (req, res) => {
+  try {
+    console.log(req.body);
+    reviewDb.deleteOne({ _id: new ObjectId(req.body.id) });
+    res.send("성공적으로 삭제했습니다");
+  } catch (e) {
+    res.status(500).send("error:" + e);
+  }
+});
