@@ -1,173 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Website</title>
-    <!-- CDN FONTAWESOME -->
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="detail.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Website</title>
+  <!-- CDN FONTAWESOME -->
 
-  <body>
-    <header>
-      <!-- <div class="light"></div> -->
-      <!-- <div class="light"></div> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="detail.css" />
+</head>
 
-      <div class="header">
-        <!-- Category menu -->
-        <button id="cate" class="cate"><strong>Category</strong></button>
-        <div id="cate_menu" class="cate_menu">
-          <button id="drama"><strong>드라마</strong></button>
-          <button id="romance"><strong>로맨스</strong></button>
-          <button id="comedy"><strong>코미디</strong></button>
-          <button id="animation"><strong>애니메이션</strong></button>
-          <button id="thriller"><strong>스릴러</strong></button>
-          <button id="mystery"><strong>미스터리</strong></button>
-          <button id="action"><strong>액션</strong></button>
-          <button id="fantasy"><strong>판타지</strong></button>
-          <button id="horror"><strong>공포</strong></button>
-        </div>
+<body>
+  <header>
+    <!-- <div class="light"></div> -->
+    <!-- <div class="light"></div> -->
 
-        <div class="logo">
-          <a href="http://localhost:5555/"><strong>The MOVIE</strong> </a>
-        </div>
+    <div class="header">
+      <!-- Category menu -->
+      <button id="cate" class="cate"><strong>Category</strong></button>
+      <div id="cate_menu" class="cate_menu">
+        <button id="drama"><strong>드라마</strong></button>
+        <button id="romance"><strong>로맨스</strong></button>
+        <button id="comedy"><strong>코미디</strong></button>
+        <button id="animation"><strong>애니메이션</strong></button>
+        <button id="thriller"><strong>스릴러</strong></button>
+        <button id="mystery"><strong>미스터리</strong></button>
+        <button id="action"><strong>액션</strong></button>
+        <button id="fantasy"><strong>판타지</strong></button>
+        <button id="horror"><strong>공포</strong></button>
+      </div>
 
-        <div class="search-container">
-          <form action="" id="form" method="GET">
-            <!-- name 값으로 검색결과 연결 -->
-            <input
-              class="search-input"
-              type="text"
-              placeholder="Search anything..."
-              name="q"
-              autocapitalize="off"
-            />
-            <div class="clear-icon">
-              <i class="fa-regular fa-circle-xmark"></i>
-            </div>
-            <button class="search-icon" type="button" onclick="search()">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-          </form>
-        </div>
+      <div class="logo">
+        <a href="http://localhost:5555/"><strong>The MOVIE</strong> </a>
+      </div>
 
-        <!-- 마이페이지 url -->
-        <div class="user-container">
-          <button
-            class="search-icon"
-            type="button"
-            onClick="location.href='mypage.ejs'"
-          >
-            <i class="fa-solid fa-user"></i>
+      <div class="search-container">
+        <form action="" id="form" method="GET">
+          <!-- name 값으로 검색결과 연결 -->
+          <input class="search-input" type="text" placeholder="Search anything..." name="q" autocapitalize="off" />
+          <div class="clear-icon">
+            <i class="fa-regular fa-circle-xmark"></i>
+          </div>
+          <button class="search-icon" type="button" onclick="search()">
+            <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-        </div>
+        </form>
+      </div>
 
-        <div class="btn">
-          <div class="btn__indicator">
-            <div class="btn__icon-container">
-              <i class="btn__icon fa-solid" style="color: #ffd43b"></i>
-            </div>
+      <!-- 마이페이지 url -->
+      <div class="user-container">
+        <button class="search-icon" type="button" onClick="location.href='mypage.ejs'">
+          <i class="fa-solid fa-user"></i>
+        </button>
+      </div>
+
+      <div class="btn">
+        <div class="btn__indicator">
+          <div class="btn__icon-container">
+            <i class="btn__icon fa-solid" style="color: #ffd43b"></i>
           </div>
         </div>
       </div>
-    </header>
-    <div class="space"></div>
-    <script>
-      //----------------다크모드 토글 --------------------
-      const body = document.querySelector("body");
-      const btn = document.querySelector(".btn");
-      const icon = document.querySelector(".btn__icon");
+    </div>
+  </header>
+  <div class="space"></div>
+  <script>
+    //----------------다크모드 토글 --------------------
+    const body = document.querySelector("body");
+    const btn = document.querySelector(".btn");
+    const icon = document.querySelector(".btn__icon");
 
-      function status(value) {
-        localStorage.setItem("darkmode", value);
+    function status(value) {
+      localStorage.setItem("darkmode", value);
+    }
+
+    function load() {
+      const darkmode = localStorage.getItem("darkmode");
+
+      if (!darkmode) {
+        status(false);
+        icon.classList.add("fa-sun");
+      } else if (darkmode == "true") {
+        body.classList.add("darkmode");
+        icon.classList.add("fa-moon");
+      } else if (darkmode == "false") {
+        icon.classList.add("fa-sun");
+      }
+    }
+
+    load();
+
+    btn.addEventListener("click", () => {
+      body.classList.toggle("darkmode");
+      icon.classList.add("animated");
+
+      status(body.classList.contains("darkmode"));
+
+      if (body.classList.contains("darkmode")) {
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
+      } else {
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
       }
 
-      function load() {
-        const darkmode = localStorage.getItem("darkmode");
+      setTimeout(() => {
+        icon.classList.remove("animated");
+      }, 500);
+    });
 
-        if (!darkmode) {
-          status(false);
-          icon.classList.add("fa-sun");
-        } else if (darkmode == "true") {
-          body.classList.add("darkmode");
-          icon.classList.add("fa-moon");
-        } else if (darkmode == "false") {
-          icon.classList.add("fa-sun");
-        }
-      }
+    //----------------검색 바 --------------------
+    const input = document.querySelector(".search-input");
+    const clearIcon = document.querySelector(".clear-icon");
+    const searchIcon = document.querySelector(".search-icon");
 
-      load();
+    const form = document.getElementById("form");
 
-      btn.addEventListener("click", () => {
-        body.classList.toggle("darkmode");
-        icon.classList.add("animated");
+    function saveToLocalStorage() {
+      localStorage.setItem('searchInput', input.value);
+    }
 
-        status(body.classList.contains("darkmode"));
+    input.addEventListener("keydown", function (e) {
+      clearIcon.classList.add("active");
 
-        if (body.classList.contains("darkmode")) {
-          icon.classList.remove("fa-sun");
-          icon.classList.add("fa-moon");
-        } else {
-          icon.classList.remove("fa-moon");
-          icon.classList.add("fa-sun");
-        }
-
-        setTimeout(() => {
-          icon.classList.remove("animated");
-        }, 500);
-      });
-
-      //----------------검색 바 --------------------
-      const input = document.querySelector(".search-input");
-      const clearIcon = document.querySelector(".clear-icon");
-      const searchIcon = document.querySelector(".search-icon");
-
-      const form = document.getElementById("form");
-
-      input.addEventListener("keydown", function (e) {
-        clearIcon.classList.add("active");
-
-        /* 1글자 0글자일 때 x표시 없애기*/
-        if (
-          (e.code === "Backspace" && input.value.length === 1) ||
-          (e.code === "Backspace" && input.value.length === 0)
-        )
-          clearIcon.classList.remove("active");
-
-        /* 검색 페이지로 이동 */
-        if (e.code === "Enter" && input.value === "") {
-          e.preventDefault();
-          clearIcon.classList.remove("active");
-        }
-
-        if (e.code === "Enter" && input.value !== "") search();
-      });
-
-      const search = () => {
-        input.classList.add("active");
-        /* 검색 페이지로 이동 */
-        if (input.value !== "") {
-          form.action = "/search";
-          searchIcon.type = "submit";
-        }
-      };
-
-      clearIcon.onclick = function () {
-        input.value = "";
-        form.action = "";
-        searchIcon.type = "button";
+      /* 1글자 0글자일 때 x표시 없애기*/
+      if (
+        (e.code === "Backspace" && input.value.length === 1) ||
+        (e.code === "Backspace" && input.value.length === 0)
+      )
         clearIcon.classList.remove("active");
-        input.classList.remove("active");
-      };
-    </script>
-  </body>
+
+      /* 검색 페이지로 이동 */
+      if (e.code === "Enter" && input.value === "") {
+        e.preventDefault();
+        clearIcon.classList.remove("active");
+      }
+
+      if (e.code === "Enter" && input.value !== "") search();
+    });
+
+    const search = () => {
+      input.classList.add("active");
+      /* 검색 페이지로 이동 */
+      if (input.value !== "") {
+        form.action = "/search";
+        searchIcon.type = "submit";
+      }
+      saveToLocalStorage();
+    };
+
+    clearIcon.onclick = function () {
+      input.value = "";
+      form.action = "";
+      searchIcon.type = "button";
+      clearIcon.classList.remove("active");
+      input.classList.remove("active");
+    };
+  </script>
+  <script src="search.js" type="module"></script>
+</body>
+
 </html>
