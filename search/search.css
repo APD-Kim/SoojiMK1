@@ -6,7 +6,7 @@
 
 .searchResult {
   width: 60%;
-  margin: 180px auto 80px;
+  margin: 120px auto 80px;
   border: 1px solid black;
   text-align: center;
 }
@@ -52,10 +52,6 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   gap: 3rem 1rem;
   margin-top: 2rem;
-}
-
-.box {
-  border: 1px solid blue;
 }
 
 .box .box-img {

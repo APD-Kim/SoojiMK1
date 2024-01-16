@@ -1,12 +1,6 @@
-// const form = document.getElementById("form");
-
-// const removeAll = () => {
-//   const movies = document.querySelectorAll(".box");
-
-//   movies.forEach((movie) => {
-//     movie.remove();
-//   });
-// };
+const removeAll = () => {
+  const movies = document.querySelectorAll(".box");
+};
 
 const options = {
   method: "GET",
@@ -45,30 +39,8 @@ const findCard = ({ id, backdrop_path, title, overview, vote_average }) => {
   container.append(box);
 };
 
-// const searchMovie = (event) => {
-//   event.preventDefault();
-
-//   const input = document.querySelector(".search-input");
-//   const { value } = input;
-//   const searchURL = `https://api.themoviedb.org/3/search/movie?query=${value}&api_key=8dc708411fa44904f55112b888e86bbd`;
-
-//   if (value) {
-//     removeAll();
-//     fetch(searchURL)
-// .then((respose) => respose.json())
-// .then(({ results }) =>
-//   results.forEach((movie) => {
-//     findCard(movie);
-//   })
-//       );
-//   }
-// };
-
-// form.addEventListener("submit", searchMovie);
-
-
-const searchinput = localStorage.getItem('searchInput');
-console.log(searchinput)
+const searchinput = localStorage.getItem("searchInput");
+console.log(searchinput);
 const searchWord = document.querySelector(".searchWord");
 
 window.onload = function () {
@@ -76,11 +48,12 @@ window.onload = function () {
   if (searchWord) {
     searchWord.textContent = searchinput;
   }
-}
-
+};
 
 function handleSearch(searchinput) {
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=1&query=${encodeURIComponent(searchinput.toLowerCase())}`;
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=1&query=${encodeURIComponent(
+    searchinput.toLowerCase()
+  )}`;
 
   console.log(searchUrl);
   fetch(searchUrl, options)

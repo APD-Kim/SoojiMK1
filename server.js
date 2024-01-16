@@ -98,8 +98,12 @@ app.post("/review", async (req, res) => {
     res.status(500).send("server error");
   }
 });
+// app.get("/search", (req, res) => {
+//   res.render("search.ejs");
+// });
 app.get("/search", (req, res) => {
-  res.render("search.ejs");
+  const searchTerm = req.query.q;
+  res.render("search.ejs", { searchTerm });
 });
 app.get("/signup", (req, res) => {
   res.render("signup.ejs");
