@@ -1,5 +1,3 @@
-const form = document.getElementById("form");
-
 const removeAll = () => {
   const movies = document.querySelectorAll(".box");
 
