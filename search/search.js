@@ -1,7 +1,3 @@
-const removeAll = () => {
-  const movies = document.querySelectorAll(".box");
-};
-
 const options = {
   method: "GET",
   headers: {
