@@ -78,7 +78,7 @@ function mainMovie(url) {
     .catch((err) => {
       console.error(err);
     });
-}
+};
 
 for (let i = 1; i <= 6; i++) {
   const movieaddbtn = document.getElementById(`movieadd${i}`);
