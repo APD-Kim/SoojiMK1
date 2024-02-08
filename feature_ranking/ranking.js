@@ -1,3 +1,5 @@
+1;
+
 const options = {
   method: "GET",
   headers: {
@@ -26,8 +28,7 @@ const createCard = ({ id, backdrop_path, title, overview, vote_average }) => {
   box.id = id;
   img.src = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
   h3.innerText = `${title}`;
-  span.innerText =
-    overview === "" ? `${title}` : `${overview.substring(0, 16)}...`;
+  span.innerText = overview === "" ? `${title}` : `${overview.substring(0, 16)}...`;
   vote.innerText = `⭐️ 평점 ${Math.round(vote_average * 10) / 10}`;
 
   boxImg.append(img);
@@ -44,21 +45,21 @@ const url4 = `https://api.themoviedb.org/3/discover/movie?include_adult=false&in
 const url5 = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&sort_by=revenue.desc&with_genres=14&page=${currentPage}`;
 const url6 = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&sort_by=revenue.desc&with_genres=16&page=${currentPage}`;
 
-const buttonNumber = localStorage.getItem('buttonNumber');
-console.log(buttonNumber)
+const buttonNumber = localStorage.getItem("buttonNumber");
+console.log(buttonNumber);
 
 window.onload = function () {
-  if (buttonNumber === '1') {
+  if (buttonNumber === "1") {
     mainMovie(url1);
-  } else if (buttonNumber === '2') {
+  } else if (buttonNumber === "2") {
     mainMovie(url2);
-  } else if (buttonNumber === '3') {
+  } else if (buttonNumber === "3") {
     mainMovie(url3);
-  } else if (buttonNumber === '4') {
+  } else if (buttonNumber === "4") {
     mainMovie(url4);
-  } else if (buttonNumber === '5') {
+  } else if (buttonNumber === "5") {
     mainMovie(url5);
-  } else if (buttonNumber === '6') {
+  } else if (buttonNumber === "6") {
     mainMovie(url6);
   }
 };
@@ -78,16 +79,15 @@ function mainMovie(url) {
     .catch((err) => {
       console.error(err);
     });
-};
+}
 
 for (let i = 1; i <= 6; i++) {
   const movieaddbtn = document.getElementById(`movieadd${i}`);
   movieaddbtn.addEventListener("click", function () {
     window.location.href = "http://localhost:5555/ranking";
-    localStorage.setItem('buttonNumber', i.toString());
+    localStorage.setItem("buttonNumber", i.toString());
   });
 }
-
 
 function loadMoreMovies() {
   const updatedUrl = `${getBaseUrl(buttonNumber)}&page=${currentPage}`;
@@ -96,17 +96,17 @@ function loadMoreMovies() {
 
 function getBaseUrl(buttonNumber) {
   switch (buttonNumber) {
-    case '1':
+    case "1":
       return "https://api.themoviedb.org/3/movie/popular?language=ko-KR";
-    case '2':
+    case "2":
       return "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&with_original_language=ko";
-    case '3':
+    case "3":
       return "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&sort_by=revenue.desc&with_genres=28";
-    case '4':
+    case "4":
       return "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&sort_by=revenue.desc&with_genres=10749";
-    case '5':
+    case "5":
       return "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&sort_by=revenue.desc&with_genres=14";
-    case '6':
+    case "6":
       return "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&sort_by=revenue.desc&with_genres=16";
     default:
       return "";
